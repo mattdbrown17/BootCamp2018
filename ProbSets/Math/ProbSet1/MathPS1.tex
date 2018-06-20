@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}
+\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{definition}
+\newtheorem{exmp}{Example}[section]
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}[section]
+%-------------------------------------- 
+\begin{document}
+
+\title{Math Problem Set 1}
+\author{Matthew Brown\\ 
+OSM Boot Camp 2018} %if necessary, replace with your course title
+ 
+\maketitle
+ 
+\begin{problem}{1.3}
+There are three things to check:
+\begin{itemize}
+\item $G_1$ is neither an algebra nor a sigma-algebra
+\item $G_2$ is only an algebra, but it is not a sigma-algebra as it is not closed under countable unions.
+\item $G_3$ is both an algebra and a sigma-algebra. 
+\end{itemize}
+\end{problem}
+
+\begin{problem}{1.7} We already showed that both of these sets are sigma-algebras. Obviously no sigma-algebra can be larger than $\mathcal{P}(X)$, since this is the largest collection of subsets of $X$. And since any sigma-algebra $S$ must contain $\emptyset$, $X \in S$, so $\{ \emptyset, X \} \subset S $.
+\end{problem}
+
+\begin{problem}{1.10}
+\begin{proof}
+I'll check the three axioms of sigma-algebras on $S = \bigcap_\alpha S_\alpha$:
+\begin{itemize}
+\item $\emptyset \in S_\alpha$ for each $\alpha$, so $\emptyset \in S$.
+\item Let $E \in S$. Then $E \in S_\alpha$ for each $\alpha$. Since each $S_\alpha$ is a sigma-algebra, $E^c \in S_\alpha$ for each $\alpha$, which means that $E^c \in S$.
+\item Very similar to the above. Let $\{E_i\}_{n==1}^{\infty} \in S$. Then ${E_i} \in S_\alpha$ for each $\alpha$ and each $i$, and $\cup_{i=1}^\infty E_i \in S_\alpha$ for each $\alpha$, so $\cup_{i=1}^\infty E_i \in S$.
+\end{itemize}
+\end{proof}
+\end{problem}
+
+\begin{problem}{1.17}
+\begin{proof} There are two parts.
+\begin{itemize}
+\item \textit{Monotonicity:} \\
+Let $A, B \in S, A \subset B$. Then we can decompose B as follows
+\begin{align*}
+B &= (B \cap A) \cup (B \cap A^c) \\
+ &= A \cup (B \cap A^c)
+\end{align*}
+And since now we have written $B$ as a union of disjoint sets, we can say that $\mu(B) = \mu(A) + \mu(B \cap A^c) $ and, by the nonnegativaty of $\mu$, $\mu(B) \geq \mu(A)$.
+\item \textit{Subadditivity:} \\
+Let $\{ A_i \}_{i=1}^{\infty} \in S $. I will decompose $\cup_{i=1}^{\infty}A_i$ as follows: 
+$$ \cup_{i=1}^{\infty}A_i = A_1 \cup (A_2 \cap A_1^c) \cup (A_3 \cap A_1^c \cap A_2^c) \cup ... \cup (A_i \cap A_1^c \cap ... \cap A_{i-1}^c) \cup ... $$
+So that the $\cup_{i=1}^{\infty}A_i$ is written as a union of disjoint sets. Moreover, we see, for instance, that $\mu(A_2 \cap A_1^c) \leq \mu(A_2)$ by the monotonicty of $\mu$. Combining these two facts, we see that: 
+\begin{align*}
+\mu(\cup_{i=1}^{\infty}A_i) &= \mu(A_1) 
++ \mu(A_2 \cap A_1^c) + ... + \mu(A_i \cap A_1^c \cap ... \cap A_{i-1}^c) + ... \\
+&\leq \mu(A_1)+\mu(A_2)+...+\mu(A_n)+...
+\end{align*}
+Which is what we wanted to show.
+\end{itemize}
+\end{proof}
+\end{problem}
+
+\end{document}

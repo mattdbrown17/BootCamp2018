@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}
+\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{definition}
+\newtheorem{exmp}{Example}[section]
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}[section]
+%-------------------------------------- 
+\begin{document}
+
+\title{Econ Problem Set 1}
+\author{Matthew Brown\\ 
+OSM Boot Camp 2018} %if necessary, replace with your course title
+ 
+\maketitle
+ 
+\begin{problem}{1}
+\begin{itemize}
+\item (i). The state variables are the future sequence of prices and the number of barrels that are available to the owner.
+\item (ii). The control variable is the number of barrels sold.
+\item (iii). The transition equation is 
+$$ b_{t+1} = b_t - k_t $$
+where $b_t$ = the number of barrels available at the start of period $t$ and $k_t$ = the number of barrels sold in period $t$. Define also that $p_t$ = the price in period $t$.
+\item (iv). The sequence problem is:
+$$ max_{\{k_t\}_{t=1}^\infty} \bigg\{ \sum_{t=1}^{\infty} \frac{1}{(1+r)^{t-1}}p_tk_t \bigg\} $$
+*constraint
+while the bellman equation is:
+$$ V(B) = max_{0 \leq k_t \leq B} \bigg\{ pk + \frac{1}{1+r}V(B') \bigg\} $$
+where $B' = B-k$
+\item (v). I have a few constraints. First of all, the lifetime budget constraint is that
+$$b_0 = \sum_{t=1}^\infty k_t$$ 
+The $=$ is actually a $\geq$, but it is always optimal to sell more, assuming positive price. 
+We also have the constraint that for all t, 
+$$k_t \geq 0$$
+\item (vi). If $p_{t+1} = p_t$ for all $t$, it is optimal to sell all the oil 
+\end{itemize}
+\end{problem}
+
+\end{document}
