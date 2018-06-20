@@ -9,5 +9,7 @@
   "test_UnitTesting.py::test_fraction_add",
   "test_UnitTesting.py::test_fraction_sub",
   "test_UnitTesting.py::test_fraction_mul",
-  "test_UnitTesting.py::test_fraction_div"
+  "test_UnitTesting.py::test_fraction_div",
+  "test_UnitTesting.py::test_is_set",
+  "test_UnitTesting.py::test_count_sets"
 ]

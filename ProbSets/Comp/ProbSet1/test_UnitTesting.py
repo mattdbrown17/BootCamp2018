@@ -99,3 +99,14 @@ def test_fraction_div(set_up_fractions):
     with pt.raises(ZeroDivisionError) as excinfo:
         frac_1_2 / ut.Fraction(0, 1)
     assert excinfo.value.args[0] == "cannot divide by zero"
+
+def test_is_set():
+    assert ut.is_set("0000", "1111", "2222") == True
+    assert ut.is_set("0000", "1000", "0111") == False
+
+def test_count_sets():
+    assert ut.count_sets(["1022", "1122", "0100", "2021", "0010", "2201", "2111", "0020", "1102", "0210", "2110", "1020"]) == 6
+    pt.raises(ValueError, ut.count_sets, cards = ["1022"])
+    pt.raises(ValueError, ut.count_sets, cards = ["1022", "1022", "1022", "2021", "0010", "2201", "2111", "0020", "1102", "0210", "2110", "1020"])
+    pt.raises(ValueError, ut.count_sets, cards = ["10220112", "1122", "0100", "2021", "0010", "2201", "2111", "0020", "1102", "0210", "2110", "1020"])
+    pt.raises(ValueError, ut.count_sets, cards = ["5784", "1122", "0100", "2021", "0010", "2201", "2111", "0020", "1102", "0210", "2110", "1020"])

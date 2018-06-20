@@ -126,3 +126,88 @@ test_count_sets():
 test_is_set():
     assert ut.is_set("0000", "1111", "2222") == True
     assert ut.is_set("0000", "1000", "0111") == False
+'''
+
+'''
+-------------------------------------------------------------------------------
+'''
+
+# Exercise 6:
+import itertools as it
+import numpy as np
+
+def is_set(a, b, c):
+    '''
+    This function takes three string arguments (set cards) and tells me whether
+    it is a set or not. It returns True if there is a set, and False if there is
+    not a set. It will be implemented in the larger count_sets, so it will not
+    raise errors.
+
+    Rebekah had the idea to make a set of the digits of each number. Then, we
+    can check to see if the cardinality of the set is 1 or 3. If so, then either
+    all the digits are the same or they're all different. If all these sets have
+    cardinality 1 or 3, then the cards are in a set! Otherwise, no.
+    '''
+    digit1set = {a[0], b[0], c[0]}
+    digit2set = {a[1], b[1], c[1]}
+    digit3set = {a[2], b[2], c[2]}
+    digit4set = {a[3], b[3], c[3]}
+
+    digit1good = (len(digit1set) == 1 or len(digit1set) == 3)
+    digit2good = (len(digit2set) == 1 or len(digit2set) == 3)
+    digit3good = (len(digit3set) == 1 or len(digit3set) == 3)
+    digit4good = (len(digit4set) == 1 or len(digit4set) == 3)
+
+    winner = (digit1good == True and digit2good == True and digit3good == True and digit4good == True)
+
+    return winner
+
+
+def count_sets(cards):
+    '''
+    This function will take an argument cards which should be a valid hand of 12
+    "Set cards," and spit out the number of sets in the hand. The function will
+    raise an error if the argument is not a valid set hand, i.e., any of the
+    following fails:
+        > There are not exactly 12 cards
+        > the cards are not unique
+        > One or more cards does not have exactly 4 digits.
+        > One or more cards has a character other than 0, 1, or 2
+    '''
+    # Start score counter
+    score = 0
+    # get all combinations of Three
+    threesets = list(it.combinations(cards, 3))
+    #pull arguments from the individual triples
+    for triple in threesets:
+        arg1 = str(triple[0])
+        arg2 = str(triple[1])
+        arg3 = str(triple[2])
+    #Use counter to track how many hands are sets
+        if is_set(arg1, arg2, arg3) == True:
+            score = score+1
+    #errors
+    #There are not exactly 12 cards
+    if len(cards) != 12:
+        raise ValueError("The hand must have exactly 12 cards")
+    #The cards are not unique
+    if len(cards) == 12 and len(set(cards)) != 12:
+        raise ValueError("The cards are not unique")
+    #One or more cards does not have exactly four digits
+    for i in range(0, len(cards)):
+        if len(cards[i]) != 4:
+            raise ValueError("One of the cards is not of length 4")
+    #One or more cards has a character other than 0, 1, or 2
+    for card in cards:
+        print(card)
+        for i in range(0, 4):
+            if (card[i] == '0' or card[i] == '1' or card[i] == '2'):
+                pass
+            else:
+                raise ValueError("One of the cards has a value which is not 0, 1, or 2")
+    return score
+
+    '''
+    When I finished this, I actually had 100 percent coverage and I didn't have
+    to add any unit tests!
+    '''
