@@ -41,18 +41,50 @@ OSM Boot Camp 2018} %if necessary, replace with your course title
 $$ b_{t+1} = b_t - k_t $$
 where $b_t$ = the number of barrels available at the start of period $t$ and $k_t$ = the number of barrels sold in period $t$. Define also that $p_t$ = the price in period $t$.
 \item (iv). The sequence problem is:
-$$ max_{\{k_t\}_{t=1}^\infty} \bigg\{ \sum_{t=1}^{\infty} \frac{1}{(1+r)^{t-1}}p_tk_t \bigg\} $$
-*constraint
-while the bellman equation is:
-$$ V(B) = max_{0 \leq k_t \leq B} \bigg\{ pk + \frac{1}{1+r}V(B') \bigg\} $$
+$$ max_{\{k_t\}_{t=1}^\infty} \bigg\{ \sum_{t=1}^{\infty} \frac{1}{(1+r)^{t-1}}p_tk_t \bigg\} \text{ such that } b_0 = \sum_{t=1}^\infty k_t  $$
+while the Bellman equation is:
+$$ V(B) = max_{0 \leq k \leq B} \bigg\{ pk + \frac{1}{1+r}V(B') \bigg\} $$
 where $B' = B-k$
-\item (v). I have a few constraints. First of all, the lifetime budget constraint is that
+\item (v). I have a few constraints. First of all, the lifetime budget constraint given above:
 $$b_0 = \sum_{t=1}^\infty k_t$$ 
 The $=$ is actually a $\geq$, but it is always optimal to sell more, assuming positive price. 
 We also have the constraint that for all t, 
-$$k_t \geq 0$$
-\item (vi). If $p_{t+1} = p_t$ for all $t$, it is optimal to sell all the oil 
+$$k_t \geq 0$$. Therefore, the Lagrangian looks like this:
+\begin{align*}
+\mathcal{L}(k_1, ..., k_n, ..., \lambda) = \sum_{t=1}^\infty \frac{1}{(1+r)^{t-1}}p_tk_t +\lambda(b_0 - \sum_{t=1}^\infty k_t)
+\end{align*}
+The first order conditions are:
+\begin{equation}
+\frac{1}{(1+r)^{t-1}}^{t-1}p_t = \lambda \text{ for all } t
+\end{equation}
+\begin{equation}
+b_0 = \sum_{t=1}^\infty k_t
+\end{equation}
+Combining two periods of (1), \begin{align*}
+\frac{1}{(1+r)^{t-1}}p_t = \frac{1}{(1+r)^{t}}p_{t+1} \\
+\implies p_t = \frac{1}{(1+r)}p_{t+1}
+\end{align*}
+This is the Euler equation, which has a weird look to it because there is no $k_t$ choice term, but this is because the problem is effectively describing linear utility.
+\item (vi). If $p_{t+1} = p_t$ for all $t$, it is optimal to sell all the oil in the first period, because there is no discount term on the first period sales. If $p_{t+1} > \frac{1}{1+r}$ for all $t$, it would never be optimal to sell the oil and the owner would continue to hold it. ***
 \end{itemize}
 \end{problem}
 
+\begin{problem}{2}
+\begin{itemize}
+\item (i) The state variables are the capital stock $k_t$, and the size of the shock $z_t$. Income $y_t$ could also maybe be considered a state variable, but it is completely determined by these other two.
+\item (ii) The control variables are consumption and investment, $(c_t)$ and $(i_t)$.
+\item (iii) The Bellman equation is: 
+\begin{equation}
+V(k_t, z_t) = max_{c_t}  \big\{ E_0(c_t) + \beta E_{z_{t+1}|z_t}V(k_{t+1},z_{t+1}) \big\}
+\end{equation}
+where $k_{t+1} = (1 - \delta)k_t + (y_t - c_t) =(1-\delta)k_t + z_tk_t - c_t$ (law of motion). Also, $ E_{z_{t+1}|z_t} = E_{z_{t+1}}$  because the shocks are independently distributed. This should be enough to solve the model!
+\item (iv) I've done this part of the exercise in the jupyter notebook titled "PS1Ex2 - Neoclassical Growth"
+\end{itemize}
+\end{problem}
+\begin{problem}{3}
+\begin{itemize}
+\item (i) The bellman equation is identical to the bellman equation we used in Problem 2 (See equation (3)). The difference here is that we cannot simply ignore the difference between $E_{z_{t+1}|z_t}$ and $E_{z_t}$ - because it is an autoregressive process, the shocks are correlated.
+\item (ii)
+\end{itemize}
+\end{problem}
 \end{document}
