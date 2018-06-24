@@ -190,11 +190,26 @@ because $C \subset E$ and $f^-$ is a positive function. And this means that $f \
 \end{problem}
 
 \begin{problem}{4.15}
-Can I argue by contradiction???
+\begin{proof}
+Define $h = g - f.$ on $E$ Because $g \geq f, h(x) \geq 0$  and $\int_E hd\mu \geq 0 $. Consider now the following lemma.
+\begin{lemma} (Linearity of Integral) \\
+For any $f, g \in \mathcal{L}^1(E, \nu)$, $\alpha \in X$ 
+\begin{align*}
+&\int_E \alpha f f \mu = \alpha \int_E d \mu \\
+&\int_E (f + g) d \mu = \int_E f d \mu + \int_E g d\mu
+\end{align*}
+I state this lemma without proof, since the property is somewhat intuitive (if this didn't hold, we would have quite a bad definition for an integral!). If a proof is desired, it can be found in the lecture notes to Richard Timoney's Lebesgue Integral course at Trinity College.
+\end{lemma}
+Using this fact, we see that 
+$$\int_E g d\mu = \int_E f+h d\mu \geq \int_E f d\mu$$ 
+Which is what we wanted to show
+\end{proof}
 \end{problem}
 
 \begin{problem}{4.16}
+\begin{proof}
 Suppose that $f \in \mathcal{L}(E, \mu)$. Then by definition, $ \int_E f^+ d\mu < \infty, \int_E f^- d\mu < \infty$. Since $A \subset E$, we can now say that $\int_A f^+ d\mu < \infty$ and $\int_A f^- d\mu < \infty$. And this means that $f \in \mathcal{L}(A, \mu)$.
+\end{proof}
 \end{problem}
 
 \begin{problem}{4.21}

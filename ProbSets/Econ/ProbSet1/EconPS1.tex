@@ -84,7 +84,20 @@ where $k_{t+1} = (1 - \delta)k_t + (y_t - c_t) =(1-\delta)k_t + z_tk_t - c_t$ (l
 \begin{problem}{3}
 \begin{itemize}
 \item (i) The bellman equation is identical to the bellman equation we used in Problem 2 (See equation (3)). The difference here is that we cannot simply ignore the difference between $E_{z_{t+1}|z_t}$ and $E_{z_t}$ - because it is an autoregressive process, the shocks are correlated.
-\item (ii)
+\item (ii) I've done this in the jupyter notebook titled "PS1Ex3 - Neoclassical Growth with Serial Correlation"
+\end{itemize}
+\end{problem}
+\begin{problem}{4}
+\begin{itemize}
+\item (i) The Bellman equation is: 
+$$
+V(w) = max_{d \in \{1, 0\}} V^d(w)
+$$
+where $w$ is the wage that is offered in the current period, $w'$ is the wage offered in the next period, $b$ is the value of unemployment benefits, $d = 1$ is the decision to work, $d =0$ is the decision not to work, and 
+\begin{align*}
+V^1(w) = \sum_{t=0}^\infty \beta^t w \\ V^0(w) = \beta E_{w' | w} (V(w')) 
+\end{align*}
+\item (ii) 
 \end{itemize}
 \end{problem}
 \end{document}
