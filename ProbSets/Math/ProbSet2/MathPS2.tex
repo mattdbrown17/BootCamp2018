@@ -149,8 +149,50 @@ So we see that $M$ is an orthonormal operator. (N.b that this is a terribly inef
 \end{problem}
 \begin{problem}{3.10} Recall that taking the Hermitian is flipping rows and columns and taking the conjugate.
 \begin{itemize}
-\item (i)
+\item (i) \begin{proof}
+We need to show both directions. \\
+$\Rightarrow$: Let $Q$ be an orthonormal matrix. Then $\langle m, n \rangle = \langle Qm, Qn \rangle \implies m^H n = (Qm)^H Qn = m^H Q^H Qn.$ And because $m$ and $n$ were arbitrarily chosen, the only way that this equality holds is if $Q^HQ = I$, and this gives us that $QQ^H = Q$ since left inverse $\implies$ right inverse.  \\
+$\Leftarrow$: Let $Q$ be a matrix so that $Q^HQ = I$. Then consider $\langle Qm, Qn \rangle = (Qm)^H Qn = m^HQ^HQn = m^Hn = \langle m, n \rangle$.
+\end{proof}
+\item (ii)
+\begin{proof} This is pretty easy:
+$$
+||x|| = \sqrt[2]{\langle x, x \rangle} = \sqrt[2]{\langle x, x \rangle} = ||Qx||
+$$
+\end{proof}
+\item (iii) \begin{proof}
+Assume Q is orthonormal. Then $QQ^H=Q^HQ = I \implies Q^H = Q^{-1}$. I'll prove the following short lemma.
+\begin{lemma} For $Q$ orthonormal, $Q^H$ is orthonormal.
+\end{lemma}
+Recall that $(Q^H)^H = Q$, and see that 
+$$
+(Q^H)^HQ^H = Q^H(Q^H)^H = I 
+$$ 
+which proves the lemma. \\
+And since $Q^{-1} = Q^H$, $Q^{-1}$ is orthonormal. 
+\end{proof}
+\item (iv) 
 \begin{proof}
+We'll examine the elements of the identity matrix element by element. First note that: 
+$$
+I_{ij} = \delta_{ij} = \begin{cases} 1 \text{ if } i = j \\ 
+0 \text{ if } i \neq j 
+\end{cases}
+$$ Then we'll compare this to what we get when we multiply $QQ^H$, which we know is equal to $I$ in all its coordinates. First, though, for any matrix $A$, define $A^i$ to be the "ith row" of $A$ and $A_j$ to be the jth column. Then
+$$ \delta_{ij} = (Q^HQ)_{ij} = (Q^H)^i Q_j = $$
+Recall now that $(Q^H)^i = \bar{Q_i}$, by definition of the Hermitian. But now we see that 
+$$\langle \bar{Q_i}, q_j \rangle = \delta_{ij} $$
+and the columns of $Q$ are orthonormal.
+\end{proof}
+\item (v) 
+A counterexample would be the matrix $M = \begin{smallmatrix} 2 & 0 \\ 0 & \frac{1}{2} \end{smallmatrix} $. det $B = 1$, but $Be_1 = 2e_1$ and $||e_1|| \neq ||2e_1|| = ||Be_1||$ which violates what we proved in (ii).
+\item(vi) \begin{proof}
+This is also quite short:
+
+$$
+(Q_1Q_2)(Q_1Q_2)^H = Q_1Q_2Q_2^HQ_1^H = Q_1Q_1^H = I
+$$
+And we also get the left inverse by properties of inverses.
 \end{proof}
 \end{itemize}
 \end{problem}
