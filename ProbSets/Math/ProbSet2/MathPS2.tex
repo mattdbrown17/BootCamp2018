@@ -122,7 +122,7 @@ proj_X(cos(3t)) &= \langle sin(t), cos(3t)\rangle sin(t) + \langle cos(t), cos(3
 (We see that $cos(3t)$ is orthogonal to $X$)
 \item (iv) 
 \begin{align*}
-proj_X(t) = 0 + 2sin(t) + 0 - sin(2x)
+proj_X(t) = 0 + 2sin(t) + 0 - sin(2t)
 \end{align*}
 \end{itemize}
 \end{problem}
@@ -196,4 +196,46 @@ And we also get the left inverse by properties of inverses.
 \end{proof}
 \end{itemize}
 \end{problem}
+\begin{problem}{3.11}
+Suppose that $x_1, ... , x_n$ is as et of linearly $\textit{dependent}$ vectors. Let's apply Gram-Schmidt. Eventually, we will arrive at a vector $x_k$ which is linearly dependent upon $x_1, ..., x_{k-1}$. But then, if $X = span(x_1, ..., x_{k-1}) $, then $x_k \in X$ and $proj_X(x_k) = x_k$... 
+\end{problem}
+
+\begin{problem}{3.13} (Simply is procedural)
+\begin{align*}
+q_1 = 1 \\
+q_2 = \frac{x - p_{k-1}}{||x - p_{1}||} \\
+p_1 = \langle 1, x \rangle \cdot 1 = 0 \\
+|| x || = \frac{\pi}{2} \implies q_2 = \frac{2x}{\pi} \\
+p_2 = \langle x^2, 1 \rangle \cdot 1
+ + \langle x^2,\frac{2x}{\pi} \rangle \cdot \frac{2x}{\pi} = \frac{\pi}{2} \\
+ q_3 = \frac{x^2 - \frac{\pi}{2}}{||x^2 - \frac{\pi}{2}||} = \frac{8}{\pi (2 \pi^2 - 4 \pi + 3)}(x^2 - \frac{\pi}{2})
+\end{align*}
+\end{problem}
+
+\begin{problem}{3.16}
+\end{problem} 
+First I must show that topological equivalence is an equivalence relation.
+\begin{proof}
+I must show three things: (i) $x \sim x$. (ii) $x \sim y  \implies y \sim x$, (iii) $x \sim y$ and $y \sim z \implies x \sim z$. \\
+(i) $ || \cdot ||_1 \sim || \cdot ||_1 $ trivially. Let $M \geq m$, then $m||x||_1 \leq || x ||_1 \leq M|| x ||_1$ for all x. \\
+(ii) Also trivial: Suppose $|| \cdot ||_1 \sim || \cdot ||_2$. Then $m||x||_1 \leq || x ||_2 \leq M|| x ||_1$ for all x, which implies that $M^{-1}||x||_2 \leq ||x||_1 \leq m^{-1}||x||_2$. \\
+(iii) Suppose $|| \cdot ||_1 \sim || \cdot ||_2 $, and $|| \cdot ||_2 \sim || \cdot ||_3$. Then $m||x||_1 \leq || x ||_2 \leq M|| x ||_1$ and $n||x||_2 \leq || x ||_3 \leq N|| x ||_2$. But we get from this that $mn||x||_1 \leq ||x||_3 \leq MN||x||_1$.
+\end{proof}
+Now I'll show that the $1, 2$, and $ \infty$ norms are topologically equivalent. 
+\begin{proof}
+(i) $|| \cdot ||_1 \sim || \cdot ||_2$: \\
+If we think about the inner product as the standard dot-product, then we have $$(||x||_1)^2 = \sum_{i=1}^n \sum_{j=1}^n |x_i||x_j| \geq \sum_{i=1}^n x_i^2 = \langle x, x, \rangle = (||x||_2)^2$$ 
+(the inequality comes because we simply threw out some positive terms on the left side). This implies that $||x||_1 \geq ||x||_2$. Moreover,
+$$
+(\sqrt[2]{n} ||x||_2)^2 = n \sum_{i=1}^n x_i 
+$$
+
+(ii) $|| \cdot ||_\infty \sim || \cdot ||_2$\
+$$
+||x||_\infty = max_{1 \leq i \leq n}\{ x_i \} = \sqrt[2]{(max_{1 \leq i \leq n} \{ x_i \})^2} \leq \sqrt[2]{\sum_{i=1}^n x_i} = ||x||_2
+$$
+\end{proof}
+
+\begin{problem}{3.26}
+\end{problem}{
 \end{document}
