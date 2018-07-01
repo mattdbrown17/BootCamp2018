@@ -271,8 +271,18 @@ This shows that the inequality can never be strict, so we have $||R_x|| = ||x||$
 \end{proof} 
 \end{problem}
 
-\begin{problem}{3.30}
-Show something is a norm (not bad)
+\begin{problem}{3.30} \begin{proof}
+To show something is a norm, I must show three properties:
+\begin{itemize}
+\item \textit{Positivity:} This follows immediately from the positivity of the underlying matrix norm: $ ||A||_S = ||SAS^{-1}|| \geq 0$, with equality iff $SAS^{-1} = 0$, and there are no elements that are conjugate to $0$ other than itself so $A = 0$ in this case.  
+\item \textit{Scalar Preservation:} I use linearity of S and the corresponding property for the matrix norm. 
+$$ ||kA||_S = ||SkAS^{-1}|| = ||kSAS^{-1}|| = k||SAS^{-1}|| = k||A||_S $$
+\item \textit{Triangle Inequality:} This also follows from the linearity of S. 
+$$||(A+B)||_S = ||S(A+B)S^{-1}|| = ||SAS^{-1}+ SBS^{-1}|| \leq || ||SAS^{-1}| + ||SBS^{-1}|| = ||A||_S + ||B||_S $$
+\end{itemize}
+Finally, to see that it is a matrix norm, I must show that it is submultiplicative. And indeed 
+$$||AB||_S = ||SABS^{-1}|| = ||SAS^{-1}SBS^{-1} || \leq ||SAS^{-1}||\cdot||SBS^{-1}|| = ||A||_S \cdot ||B||_S $$
+\end{proof}
 \end{problem}
 
 \begin{problem}{3.37}
@@ -291,7 +301,12 @@ D = \begin{bmatrix}
 0 & 0 & 0\\
 \end{bmatrix}
 $$
-Odd - I want to apply the algorithm from 3.7.9 but I can't figure out why the fg term disappears!
+By following the same method as exercise 3.7.9, I see that 
+$$D^* = -D = \begin{bmatrix}
+0 & -1 & 0\\
+0 & 0 & -2\\
+0 & 0 & 0\\
+\end{bmatrix}  $$
 \end{problem}
 
 \begin{problem}{3.39}
@@ -344,15 +359,142 @@ which is the second case.
 \end{problem}
 
 \begin{problem}{3.45}
+Props to Albi for this idea - I think this is really slick (especially the last part)!
+\begin{proof}
+Double inclusion. First show that $\text{Skew}_n(\mathbb{R}) \subset \text{ Sym}_n^\perp(\mathbb{R})$. \\
+Let $A \in {Skew}_n(\mathbb{R})$ Then, recalling the definitions of the spaces and the properties of trace,
+$$\forall B \in \text{ Sym}_n(\mathbb{R})\text{, } \langle A, B \rangle = \text{ tr}(A^HB) = \text{ tr}(-AB) = \text{ tr}(-AB^H) = -\overline{\langle A, B \rangle}
+$$ 
+But since we are over $\mathbb{R}, \langle A, B \rangle = -\overline{\langle A, B \rangle} \implies \langle A,B \rangle = 0$ for all $B \in \text{ Sym}_n(\mathbb{R})$, so we see that $A \in \text{ Sym}_n(\mathbb{R})^{\perp}$ \\
+Now I'll show that $\text{ Sym}_n^\perp(\mathbb{R}) \subset \text{Skew}_n(\mathbb{R})$. \\
+Let $A \in \text{ Sym}_n(\mathbb{R})^\perp$. The key insight here is that $A+A^T \in \text{ Sym}_n(\mathbb{R})$ Then 
+$$
+0 = \langle A, A+A^T \rangle = \text{ tr}(A, A+A^T)
+$$
+...Actually I have some qualms about the final step of this *Remember to ask albi.
+\end{proof}
+\end{problem}
+
+\begin{problem}{3.46} Four Parts
+\begin{proof}
+\begin{itemize}
+\item (i) $Ax \in$ Range$(A)$ by definition, and $x \in$ Ker$(A^HA) \implies A^H(Ax) = 0 \implies Ax \in$ Ker$A^H$.
+\item (ii) Clearly Ker$(A) \subset $ Ker$(A^HA)$ since $A^H(0) = 0$. It remains to show that 
+$$A^HAx = 0 \implies Ax = 0$$
+Suppose $A^HAx = 0$. Then if we apply the operator $x^T$ as a row vector, we see that 
+$$
+x^HA^HAx = (Ax)^HAx = \langle Ax, Ax \rangle = 0
+$$
+and $\langle Ax, Ax \rangle = 0 \implies Ax = 0$ which is what we wanted to show.
+\item (iii) $A$ and $A^HA$ both map to the n-dimensional spaces and Ker$(A)$ = Ker$(A^HA)$ by the above, so by Rank-Nullity,
+\begin{align*}
+n - \text{ dim Ker}(A) &= \text{ dim Range}(A) \\
+n - \text{ dim Ker}(A^HA) &= \text{ dim Range}(A^HA)
+\end{align*}
+The left sides of the two equations are equal so the right sides must also be equal!
+\item (iv) $A$ has linearly independent columns $\implies $ \\
+$A$ has rank $n$ $\implies$ \\
+$A^HA$ has (full) rank $n$ $\implies$ \\
+$A^HA$ is non singular.
+\end{itemize}
+\end{proof}
 \end{problem}
 
 \begin{problem}{3.47}
+\begin{proof}
+\begin{itemize}
+\item (i) $$P^2 = (A(A^HA^{-1})A^H)^2 = A(A^HA^{-1})A^HA(A^HA^{-1})A^H = AA^HAA^H = A(A^HA^{-1})A$$
+\item (ii) \begin{align*}P^H = (A(A^HA^{-1})A^H)^H &= ((A(A^H))((A^{-1})A^H))^H \\
+&=((A^{-1})A^H))^H((A(A^H))^H \\
+&=A(A^{-1})^HAA^H
+\end{align*}
+\item (iii) Er... I'm not sure this is even true. Suppose $m < n$, then $P$ is $m$ by $m$ and cannot possibly have rank $n$? What am I missing here?
+\end{itemize}
+\end{proof}
 \end{problem}
 
-\begin{problem}{3.48}
+\begin{problem}{3.48} SO MANY PARTS AAAH!
+\begin{proof}
+\begin{itemize}
+\item (i) I'll do it all at once... let $k \in \mathbb{R}, A,B \in M_n(\mathbb{R})$
+\begin{align*}
+P(k(A+B)) &= \frac{(k(A+B))+(k(A+B))^T}{2} \\
+&= \frac{k(A+B)+(k(A^T+B^T)}{2} \\
+&= \frac{k(A+A^T+B+B^T)}{2} \\
+&= k(P(A)+P(B))
+\end{align*}
+\item (ii) 
+\begin{align*}
+P^2(A) = \frac{P(A)+P(A)^T}{2} = \frac{\frac{A+A^T}{2}+\frac{A+A^T}{2}}{2} = \frac{A+A^T}{2} = P(A)
+\end{align*}
+\item (iii) First see that $P(A) = P(A^T)$ (this is trivial). Then
+\begin{align*}
+\langle P(A), B \rangle = \text{ tr}(P(A)^TB) =\text{ tr}(\frac{A+A^T}{2} \cdot B) = \frac{\text{tr}(A^TB+AB)}{2} = \text{tr}(AB) \\
+= \frac{\text{tr}(AB+AB^T)}{2} =  \text{ tr}(A \cdot \frac{B+B^T}{2}) = \text{ tr}(AP(B)) = \langle A, P(B) \rangle 
+\end{align*}
+\item (iv) 
+\begin{align*}
+A \in \text{ Ker}(P) \iff P(A) = 0 \iff A+A^T = 0 \iff A = -A^T \iff A \in \text{ Skew}_n(\mathbb{R})
+\end{align*}
+\item (v)
+\begin{align*}
+A \in \text{ Range}(P) &\iff \exists B : A = P(B) \\
+&\iff \exists B: B + B^T = 2A \\
+&\iff 2A \in \text{ Sym}_n(\mathbb{R}) \\
+&\iff A \in \text{ Sym}_n(\mathbb{R}) 
+\end{align*}
+\item (vi) Copied latex code from Albi as this is just long and mechanical.
+\begin{align*}
+    &||A - P(A)||_F^2 = <A - P(A), A - P(A)> =
+    <A - \frac{A + A^T}{2}, A - \frac{A + A^T}{2}> =\\
+    &<\frac{A - A^T}{2}, \frac{A - A^T}{2}> = 
+    \text{Tr}\left(\left(\frac{A - A^T}{2}\right)^T\frac{A - A^T}{2}\right)=\\
+    &\text{Tr}\left(\frac{A^T - A}{2}\frac{A - A^T}{2}\right) = 
+    \text{Tr}\left(\frac{A^TA - A^2 - (A^T)^2 + AA^T}{4}\right) =\\ 
+    &\text{Tr}\left(\frac{A^TA - A^2 - A^2 + A^TA}{4}\right) =
+    \text{Tr}\left(\frac{A^TA - A^2}{2}\right) = 
+    \frac{\text{Tr}(A^TA) - \text{Tr}(A^2)}{2}.
+\end{align*}
+\end{itemize}
+\end{proof}
 \end{problem}
-
 \begin{problem}{3.50}
+I want to estimate the least squares solution for $Ax = b$ where:
+\begin{align*}
+A = \begin{bmatrix}
+x_1 & y_1 \\
+. & . \\
+. & . \\
+. & . \\
+x_n & y_n
+\end{bmatrix} \text{,  }
+x = \begin{bmatrix}
+r \\
+s
+\end{bmatrix} \text{,  }
+b = \begin{bmatrix}
+1 \\
+. \\
+. \\
+. \\
+1
+\end{bmatrix}
+\end{align*}
+The normal equation tho solve is:
+\begin{align*}
+\begin{bmatrix}
+\sum_{i=1}^n x_i^2 & \sum_{i=1}^n x_iy_i \\
+\sum_{i=1}^n x_iy_i & \sum_{i=1}^n y_i^2
+\end{bmatrix}
+\begin{bmatrix}
+r \\
+s
+\end{bmatrix} = \begin{bmatrix}
+\sum_{i=1}^n x_i \\
+\sum_{i=1}^n y_i
+\end{bmatrix}
+\end{align*} 
 \end{problem}
+
 
 \end{document}
