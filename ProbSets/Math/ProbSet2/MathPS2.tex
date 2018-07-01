@@ -59,7 +59,17 @@ So it is clear that $\frac{1}{2}(||x+y||^2 + ||x-y||^2) = ||x||^2 + ||y||^2$
 \end{problem}
 
 \begin{problem}{3.2}
-I proceed similarly: just start from the left side, expand, and simplify.
+Latex code from kendra:
+$\frac{1}{4} (||x+y||^2 - ||x-y||^2 + i ||x-iy||^2 - i ||x+iy||^2)$ \\ 
+= $\frac{1}{4} (||x+y||^2 - ||x-y||^2)  + \frac{1}{4} (i ||x-iy||^2 - i ||x+iy||^2)$ \\
+= $<x,y> + \frac{1}{4} (i\sqrt{<x-iy, x-iy>}^2 - i \sqrt{<x+iy, x+iy>}^2)$ by 3.1.i\\
+= $<x,y> + \frac{1}{4} (i<x-iy, x-iy> - i<x+iy, x+iy>)$ \\
+= $<x,y> + \frac{1}{4} (i(<x, x-iy> + <-iy, x-iy>) - i(<x, x+iy> +<iy, x+iy>))$ \\
+= $<x,y> + \frac{1}{4} (i(<x, x> + <x, -iy> + <-iy, x> + <-iy,-iy>) \\ \indent - i(<x, x> +< x, iy> +<iy, x> +<iy, iy>))$ \\
+= $<x,y> + \frac{1}{4} (i(<x, x> + i<x, y> + i<y, x> - <y,y>) \\ \indent - i(<x, x> -i < x, y> -i <y, x> -<y, y>))$ \\
+= $<x,y> + \frac{1}{4} (i<x, x> -<x, y> -<y, x> - i<y,y> \\ \indent - i<x, x> + < x, y> + <y, x> +i<y, y>)$ \\
+= $<x,y> + \frac{1}{4} ( -<x,y>  + < x, y>)  $ \\
+= $<x,y>$ \\
 \end{problem}
 
 \begin{problem}{3.3}
@@ -151,7 +161,7 @@ So we see that $M$ is an orthonormal operator. (N.b that this is a terribly inef
 \begin{itemize}
 \item (i) \begin{proof}
 We need to show both directions. \\
-$\Rightarrow$: Let $Q$ be an orthonormal matrix. Then $\langle m, n \rangle = \langle Qm, Qn \rangle \implies m^H n = (Qm)^H Qn = m^H Q^H Qn.$ And because $m$ and $n$ were arbitrarily chosen, the only way that this equality holds is if $Q^HQ = I$, and this gives us that $QQ^H = Q$ since left inverse $\implies$ right inverse.  \\
+$\Rightarrow$: Let $Q$ be an orthonormal matrix. Then $\langle m, n \rangle = \langle Qm, Qn \rangle \implies m^H n = (Qm)^H Qn = m^H Q^H Qn.$ And because $m$ and $n$ were arbitrarily chosen, the only way that this equality holds is if $Q^HQ = I$, and this gives us that $QQ^H = Q$ since left inverse $\implies$ right inverse (for square matrices).  \\
 $\Leftarrow$: Let $Q$ be a matrix so that $Q^HQ = I$. Then consider $\langle Qm, Qn \rangle = (Qm)^H Qn = m^HQ^HQn = m^Hn = \langle m, n \rangle$.
 \end{proof}
 \item (ii)
@@ -185,7 +195,13 @@ $$\langle \bar{Q_i}, q_j \rangle = \delta_{ij} $$
 and the columns of $Q$ are orthonormal.
 \end{proof}
 \item (v) 
-A counterexample would be the matrix $M = \begin{smallmatrix} 2 & 0 \\ 0 & \frac{1}{2} \end{smallmatrix} $. det $B = 1$, but $Be_1 = 2e_1$ and $||e_1|| \neq ||2e_1|| = ||Be_1||$ which violates what we proved in (ii).
+\begin{proof}
+Consider an orthonormal matrix $Q \in M_n(\mathbb{R})$. 
+$$ \text{ det}(Q) \text{ det}(Q^H) = \text{ det}(QQ^H) = \text{ det}(I) = 1 
+$$
+and det$Q) =$ det$(Q^H) \implies$ det$(Q) = 1$ or $-1$. \\
+A counterexample to the converse would be the matrix $M = (\begin{smallmatrix} 2 & 0 \\ 0 & \frac{1}{2} \end{smallmatrix}) $. det $B = 1$, but $Be_1 = 2e_1$ and $||e_1|| \neq ||2e_1|| = ||Be_1||$ which violates what we proved in (ii).
+\end{proof}
 \item(vi) \begin{proof}
 This is also quite short:
 
@@ -201,30 +217,94 @@ Suppose that $x_1, ... , x_n$ is as et of linearly $\textit{dependent}$ vectors.
 \end{problem}
 
 
-\begin{problem}{3.16} Done with Albi
+\begin{problem}{3.16} Solved this with Albi!
+\begin{itemize}
+\item (i) Let $A\in\mathbb M_{mxn}$ where $\text{rank}(A)=n\leq m$.
+Then there exist orthonormal $Q\in\mathbb M_{mxm}$ and
+upper triangular $R\in\mathbb M_{mxn}$ such that $A=QR$.
+Since $\tilde{Q}=-Q$ is still orthonormal ($-Q(-Q)^H=-Q(-Q^H)=QQ^H=I$ 
+and similarly one shows $(-Q)^H(-Q)=I$)
+and $\tilde{R}=-R$ is still upper triangular, 
+$A=QR=\tilde{Q}\tilde{R}$.
+Therefore QR-decomposition is not unique.
+\item (ii) Suppose now that $A$ is invertible and can be decomposed into 
+two different QR decompositions: $QR$ and $\tilde{Q}\tilde{R}$,
+where the diagonal entries of $R$ and $\tilde{R}$ are strictly positive.
+Then both $R$ and $\tilde{R}$ are invertible and we conclude that
+$\tilde{R}^{-1}R=Q^H\tilde{Q}$.
+Since $R$ and $\tilde{R}$ are upper triangular, so is the LHS of the previous equation.
+On the other hand, since $Q$ and $\tilde{Q}$ are orthonormal, so is the RHS.
+Therefore $\tilde{R}^{-1}R=I$ and, by unicity of the inverse, we conclude that $R=\tilde{R}$,
+and so $Q=\tilde{Q}$.
+\end{itemize}
 \end{problem}
 
 \begin{problem}{3.17} \begin{proof}
 \begin{align*}
-\hat{R}x = \hat{Q}^Hb \\
-\iff \hat{Q} \hat{R} x = b \\
-\iff Ax = b \\
-\iff A^H Ax = A^H b
+A^HAx = Ab \\
+\iff (\hat{Q} \hat{R})^H \hat{Q} \hat{R} x = (\hat{Q}\hat{R})^H b \\
+\iff (\hat{Q} \hat{R})^H \hat{Q} \hat{R} x \\
+\iff \hat{R}^H \hat{Q}^H \hat{Q} \hat{R} x = \hat{R}^H \hat{Q}^Hb
 \end{align*}
-Note that THIS IS NOT THE CORRECT PROOF AND I NEED TO FIX THIS
+Multiply both sides by $\hat{R}^{H^{-1}}$ and we see that it is equivalent to $\hat{R}x = \hat{Q}^Hb$
 \end{proof}
 \end{problem}
 
-\begin{problem}{3.23}doesn't look bad
+\begin{problem}{3.23}
+\begin{proof}
+$$||x|| - ||y|| = ||x||+ ||-y|| \leq ||x-y|| $$ and 
+$$||y|| - ||x|| = ||y||+ ||-x|| \leq ||y-x|| = ||x-y||$$
+together imply
+$\big| ||x|| - ||y|| \big| \leq ||x-y|| $
+\end{proof}
 \end{problem}
 
-\begin{problem}{3.24}Procedural (show things are norms)
+\begin{problem}{3.24}This is procedural, so I used Albi's latex code
 \end{problem}
+(i)
+Since $|f(t)|\geq 0$ for every $t$, so is $\int_a^b|f(t)|dt$.
+In addition, if $f=0$, then $\int_a^b|f(t)|dt=0$.
+On the other hand, if $\int_a^b|f(t)|dt=0$ and $|f(t)|\geq 0$, it must be that
+$|f(t)|=0$ for all t, implying that $f=0$.
+Now take a constant $c\in\mathbb F$, then 
+$\int_a^b|cf(t)|dt=\int_a^b|c||f(t)|dt=|c|\int_a^b|f(t)|dt$,
+since $c$ does not depend on $t$.
+Finally, take $g\in C([a, b]; \mathbb F)$.
+Since $|f(t)+g(t)|\leq|f(t)|+|g(t)|$ for all $t$ and the integral is a linear operator,
+we have that $\int_a^b|f(t)+g(t)|dt\leq\int_a^b|f(t)|dt + \int_a^b|g(t)|dt$.
+
+(ii)
+Since $|f(t)|^2\geq 0$ for every $t$, so is $\int_a^b|f(t)|^2dt$ and its square root.
+In addition, if $f=0$, then $|f(t)|^2=0$ for all $t$ and $\sqrt{\int_a^b|f(t)|^2dt}=0$.
+On the other hand, if $\sqrt{\int_a^b|f(t)|^2dt}=0$, 
+then $\int_a^b|f(t)|^2dt=0$ and since $|f(t)|^2\geq 0$ for all $t$, 
+it must be that $|f(t)|^2=0$ for all t, implying that $f=0$.
+Now take a constant $c\in\mathbb F$, then 
+$\sqrt{\int_a^b|cf(t)|^2dt}=\sqrt{\int_a^b|c|^2|f(t)|^2dt}=|c|\sqrt{\int_a^b|f(t)|^2dt}$,
+since $c$ does not depend on $t$.
+Finally, take $g\in C([a, b]; \mathbb F)$.
+Since $|f(t)+g(t)|\leq|f(t)|+|g(t)|$ for all $t$, 
+$x\mapsto x^2$ and $x\mapsto\sqrt{x}$ are monotonically increasing for nonnegative $x$ 
+and the integral is a linear operator,
+we have that $\sqrt{\int_a^b|f(t)+g(t)|^2dt}\leq\sqrt{\int_a^b|f(t)|^2dt + \int_a^b|g(t)|^2dt}
+\leq||f||_{L2}+||g||_{L2}$.
+
+(iii)
+Since $|f(x)|\geq 0$ for all $x$, so is the $\sup_{x\in[a, b]}|f(x)|$.
+In addition, if $f=0$, then $\sup_{x\in[a, b]}|f(x)|$ is also zero.
+On the other hand, since $|f(x)|\geq 0$ for all $x$, $0\leq\sup_{x\in[a, b]}|f(x)|=0$
+implies that we must have $f=0$.
+Now take a constant $c\in\mathbb F$, then
+$\sup_{x\in[a, b]}|cf(x)|=\sup_{x\in[a, b]}|c||f(x)|=|c|\sup_{x\in[a, b]}|f(x)|$.
+Finally, take $g\in C([a, b];\mathbb F)$.
+Since $|f(x)+g(x)|\leq|f(x)|+|g(x)|$ for all $x$, we have that
+$\sup_{x\in[a, b]}|f(x)+g(x)|\leq\sup_{x\in[a, b]}\{|f(x)|+|g(x)|\}
+\leq\sup_{x\in[a, b]}|f(x)|+\sup_{x\in[a, b]}|g(x)|$.
+
 
 \begin{problem}{3.26} 
 First I must show that topological equivalence is an equivalence relation.
 \begin{proof}
-REST OF THIS DONE WITH ALBI SEE GIT
 I must show three things: (i) $x \sim x$. (ii) $x \sim y  \implies y \sim x$, (iii) $x \sim y$ and $y \sim z \implies x \sim z$. \\
 (i) $ || \cdot ||_1 \sim || \cdot ||_1 $ trivially. Let $M \geq m$, then $m||x||_1 \leq || x ||_1 \leq M|| x ||_1$ for all x. \\
 (ii) Also trivial: Suppose $|| \cdot ||_1 \sim || \cdot ||_2$. Then $m||x||_1 \leq || x ||_2 \leq M|| x ||_1$ for all x, which implies that $M^{-1}||x||_2 \leq ||x||_1 \leq m^{-1}||x||_2$. \\
@@ -234,20 +314,53 @@ Now I'll show that the $1, 2$, and $ \infty$ norms are topologically equivalent.
 \begin{proof}
 (i) $|| \cdot ||_1 \sim || \cdot ||_2$: \\
 If we think about the inner product as the standard dot-product, then we have $$(||x||_1)^2 = \sum_{i=1}^n \sum_{j=1}^n |x_i||x_j| \geq \sum_{i=1}^n x_i^2 = \langle x, x, \rangle = (||x||_2)^2$$ 
-(the inequality comes because we simply threw out some positive terms on the left side). This implies that $||x||_1 \geq ||x||_2$. Moreover,
+(the inequality comes because we simply threw out some positive terms on the left side). This implies that $||x||_1 \geq ||x||_2$. Moreover, 
 $$
-(\sqrt[2]{n} ||x||_2)^2 = n \sum_{i=1}^n x_i 
+\sum_{i=1}^n|x_i|\cdot1\leq
+\left(\sum_{i=1}^n|x_i|^2\right)^{1/2}\left(\sum_{i=1}^n1^2\right)^{1/2}=
+\sqrt{n}\left(\sum_{i=1}^n|x_i|^2\right)^{1/2}
 $$
+so $||x||_2\leq ||x||_1 \leq \sqrt{n}||x||_2$. \\
+(ii) $|| \cdot ||_\infty \sim || \cdot ||_2$
 
-(ii) $|| \cdot ||_\infty \sim || \cdot ||_2$\
 $$
 ||x||_\infty = max_{1 \leq i \leq n}\{ x_i \} = \sqrt[2]{(max_{1 \leq i \leq n} \{ x_i \})^2} \leq \sqrt[2]{\sum_{i=1}^n x_i} = ||x||_2
 $$
+and 
+$$
+||x||_2^2 = \sum_{i=1}^n |x_i|^2 \leq n max_i \{ x_i \} = (\sqrt{n}||x|_\infty|)^2 \implies ||x||_2 = \sqrt{n}||x||_\infty
+$$
+so $||x||\infty \leq ||x||_2 \leq \sqrt{n}||x||_\infty$
 \end{proof}
 \end{problem}
 
-\begin{problem}{3.28}
-Related to Previous
+\begin{problem}{3.28} (Albi's latex code) \\
+(i)
+Notice that (applying the results of the previous exercise)
+\begin{align*}
+    \sup_{x\neq 0}\frac{||Ax||_1}{||x||_1}\leq
+    \sup_{x\neq 0}\frac{||Ax||_1}{||x||_1}\leq
+    \sqrt{n}\sup_{x\neq 0}\frac{||Ax||_2}{||x||_2},
+\end{align*}
+and
+\begin{align*}
+    \sup_{x\neq 0}\frac{||Ax||_1}{||x||_1}\geq
+    \sup_{x\neq 0}\frac{||Ax||_2}{||x||_1}\geq
+    \frac{1}{\sqrt{n}}\sup_{x\neq 0}\frac{||Ax||_2}{||x||_2}
+\end{align*}
+imply that $\frac{1}{\sqrt{n}}||A||_2\leq||A||_1\leq||A||_2$.
+
+(ii)
+Notice that
+\begin{equation*}
+    \sup_{x\neq 0}\frac{||Ax||_2}{||x||_2}\leq
+    \sup_{x\neq 0}\frac{\sqrt{n}||Ax||_\infty}{||x||_\infty},
+\end{equation*}
+and
+\begin{equation*}
+    \sup_{x\neq 0}\frac{||Ax||_2}{||x||_2}\geq
+    \sup_{x\neq 0}\frac{||Ax||_\infty}{\sqrt{n}||x||_\infty}.
+\end{equation*}
 \end{problem}
 
 \begin{problem}{3.29}
@@ -346,7 +459,18 @@ Since the above is true for all $x, y$, we must have $T^*(T^{-1})^* = I $
 $$
 \langle AB, C \rangle = \text{ tr }(AB)^HC = \text{ tr } B^HA^HC = \langle B, A^HC \rangle
 $$
-\item (ii) (seems easy!)
+\item (ii) 
+\begin{align*}
+\langle A_2, A_3A_1 \rangle = \text{ tr}(A_2^HA_3A_1) = \text{ tr}(A_1A_2^HA_3) = \text{ tr}(A_2A_1^HA_3) = \langle A_2A_1^*, A_3 \rangle
+\end{align*}
+\item (iii) (Albi)
+Given $B,C\in\mathbb M_n(\mathbb F)$, we have $<B,AC-CA>=<B,AC>-<B,CA>$. 
+Applying (ii) to the second term we get $<B,CA>=<BA^*,C>$.
+On the other hand, 
+\begin{equation*}
+    <B,AC>=\text{tr}(B^HAC)=\text{tr}((A^HB)^HC)=<A^HB,C>=<A^*B,C>.
+\end{equation*}
+Putting all together we obtain that $T_A^*=T_{A^*}$
 \end{itemize}
 
 \begin{problem}{3.44}
@@ -367,11 +491,14 @@ $$\forall B \in \text{ Sym}_n(\mathbb{R})\text{, } \langle A, B \rangle = \text{
 $$ 
 But since we are over $\mathbb{R}, \langle A, B \rangle = -\overline{\langle A, B \rangle} \implies \langle A,B \rangle = 0$ for all $B \in \text{ Sym}_n(\mathbb{R})$, so we see that $A \in \text{ Sym}_n(\mathbb{R})^{\perp}$ \\
 Now I'll show that $\text{ Sym}_n^\perp(\mathbb{R}) \subset \text{Skew}_n(\mathbb{R})$. \\
-Let $A \in \text{ Sym}_n(\mathbb{R})^\perp$. The key insight here is that $A+A^T \in \text{ Sym}_n(\mathbb{R})$ Then 
+Let $B \in \text{ Sym}_n(\mathbb{R})^\perp$. Then for any $A \in \text{ Sym}_n(\mathbb{R})$, We will examine $\langle B+B^T, A \rangle$.
 $$
-0 = \langle A, A+A^T \rangle = \text{ tr}(A, A+A^T)
+\langle B+B^T,A \rangle = \langle B, A\rangle + \langle B^T, A\rangle = 0 + \langle B^T, A\rangle 
 $$
-...Actually I have some qualms about the final step of this *Remember to ask albi.
+and $$
+\langle B^T, A \rangle = \text{ tr}(BA) = \text{ tr}(BA^T) = \text{ tr}(A^TB) = \text{tr}(B^TA) = \langle B, A \rangle = 0
+$$
+so $\langle B+B^T, A \rangle = 0$ for all $A \in \text{ Sym}_n(\mathbb{R})$. But $B+B^T \in \text{ Sym}_n(\mathbb{R})$, so $||B+B^T|| = 0 \implies B+B^T=0 \implies B^T = -B$
 \end{proof}
 \end{problem}
 
@@ -462,11 +589,11 @@ A \in \text{ Range}(P) &\iff \exists B : A = P(B) \\
 I want to estimate the least squares solution for $Ax = b$ where:
 \begin{align*}
 A = \begin{bmatrix}
-x_1 & y_1 \\
+x_1^2 & y_1^2 \\
 . & . \\
 . & . \\
 . & . \\
-x_n & y_n
+x_n^2 & y_n^2
 \end{bmatrix} \text{,  }
 x = \begin{bmatrix}
 r \\
@@ -480,7 +607,7 @@ b = \begin{bmatrix}
 1
 \end{bmatrix}
 \end{align*}
-The normal equation tho solve is:
+The normal equation to solve is:
 \begin{align*}
 \begin{bmatrix}
 \sum_{i=1}^n x_i^2 & \sum_{i=1}^n x_iy_i \\
