@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}
+\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{definition}
+\newtheorem{exmp}{Example}[section]
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}[section]
+%-------------------------------------- 
+\begin{document}
+
+\title{Math Problem Set 3}
+\author{Matthew Brown\\ 
+OSM Boot Camp 2018} %if necessary, replace with your course title
+ 
+\maketitle
+ 
+\begin{problem}{4.2}
+Recall from the last homework that 
+$$
+D = \begin{bmatrix}
+0 & 1 & 0\\
+0 & 0 & 2\\
+0 & 0 & 0\\
+\end{bmatrix}
+$$
+This is an upper triangular matrix, so its has eigenvalues along the diagonal, so the only eigenvalue is 0. The eigenspace for this eigenvalue is the set of constant functions, which has dimension 1, so the geometric multiplicity is 1. The algebraic multiplicity, on the other hand, is 3, since 0 appears 3 times along the diagonal.
+\end{problem}
+
+\begin{problem}{4.4}
+\begin{proof}
+\begin{itemize}
+If $A = A^H$, then the diagonal elements of $A$ must be real (since they don't change when we take their complex conjugate. We know from exercise 4.3 that 
+\begin{align*}
+p(\lambda ) &= \lambda^2 - \text{ tr}A \lambda + \text{ det}(A) \\
+&= \lambda^2 - (A_{11}+A_{12}) \lambda + A_{11}A_{12} - A_{12}A_{21} \\
+&= (\lambda - A_{11})(\lambda - A_{22})
+\end{align*}
+\end{itemize}
+\end{proof}
+\end{problem}
+
+\begin{problem}{4.6}
+\end{problem}
+
+\begin{problem}{4.8}
+\end{problem}
+
+\begin{problem}{4.13}
+\end{problem}
+
+\begin{problem}{4.15}
+\end{problem}
+
+\begin{problem}{4.16}
+\end{problem}
+
+\begin{problem}{4.18}
+\end{problem}
+
+\begin{problem}{4.20}
+\end{problem}
+
+\begin{problem}{4.24}
+\end{problem}
+
+\begin{problem}{4.25}
+\end{problem}
+
+\begin{problem}{4.27}
+\end{problem}
+
+\begin{problem}{4.28}
+\end{problem}
+
+\begin{problem}{4.31}
+\end{problem}
+
+\begin{problem}{4.32}
+\end{problem}
+
+\begin{problem}{4.33}
+\end{problem}
+
+\begin{problem}{4.36}
+\end{problem}
+
+\begin{problem}{4.38}
+\end{problem}
+
+
+\end{document}
