@@ -46,25 +46,102 @@ This is an upper triangular matrix, so its has eigenvalues along the diagonal, s
 \end{problem}
 
 \begin{problem}{4.4}
-\begin{proof}
+\begin{proof} Two parts: \\
 \begin{itemize}
-If $A = A^H$, then the diagonal elements of $A$ must be real (since they don't change when we take their complex conjugate. We know from exercise 4.3 that 
+\item If $A = A^H$, then the diagonal elements of $A$ must be real (since they don't change when we take their complex conjugate). We know from exercise 4.3 that 
 \begin{align*}
-p(\lambda ) &= \lambda^2 - \text{ tr}A \lambda + \text{ det}(A) \\
-&= \lambda^2 - (A_{11}+A_{12}) \lambda + A_{11}A_{12} - A_{12}A_{21} \\
-&= (\lambda - A_{11})(\lambda - A_{22})
+p(\lambda ) = \lambda^2 - \text{ tr}A\lambda + \text{ det} (A)
 \end{align*}
+By the quadratic formula, we can look at the "discriminant" $(\text{ tr}A)^2 - 4\text{ det} (A)$ to see if the roots are real. Now 
+\begin{align*}
+(\text{ tr}A)^2 - 4\text{ det} (A) = (A_11 + A_22)^2
+\end{align*}
+(NOT DONE BUT BRAIN IS BROKEN)
 \end{itemize}
 \end{proof}
 \end{problem}
 
 \begin{problem}{4.6}
+\begin{proof}
+Consider an upper triangular matrix $A$, with the elements $\lambda$ on the diagonal like so:
+$$
+A = \begin{bmatrix}
+\lambda_1 & & \\
+& \lambda_2 & \\
+& & ... & & \\
+& & & \lambda_k
+\end{bmatrix}
+$$
+(Note of course that the $\lambda$s don't have to be unique.) A number c is an eigenvalue, iff the space Ker($cI - A)$ has some nonzero elements. We see that 
+$$
+cI - A = \begin{bmatrix}
+c - \lambda_1 & & \\
+& c - \lambda_2 & \\
+& & ... & & \\
+& & & c - \lambda_k
+\end{bmatrix}
+$$
+For $c \neq \lambda_i$, the matrix is invertible and Ker$(cI - A) = \{0\} \implies c$ is not an eigenvalue. \\
+For $c = \lambda_i$, some column of $cI -A$ will have zero on the diagonal. Choose the first such column, call it column $(cI-A)_r$. I claim that column $(cI-A)_r$ must be in the span of all the previous columns $(cI-A)_1,...,(cI-A)_{r-1}$.  \\
+To see this, think of all the columns as $r-1$-dimensional vectors. I can do this because the coordinates in position $k>r$ are all 0, and thus they "don't matter" (technical term!). Since I'm thinking now of vectors in $\mathbb{F}^{r-1}$ and I notice that $(cI-A)_1, ... (cI-A)_{r-1}$ are linearly independent, I can say that these vectors form a basis for  $\mathbb{F}^{r-1}$. Therefore $(cI-A)_{r-n} \in \mathbb{F}^{r-1}$ is in the span of $ \{ (cI-A)_1, ... (cI-A)_{r-1} \}$... but there is no difficulty in passing to the whole column of $(cI-A)$! \\
+That was long and there's probably a shorter way to do it (indeed I'm pretty sure the above isn't rigorous), but the point is that I've shown that the columns of $(cI-A)$ are not linearly independent. Thus $(cI-A)$ does not have full rank, so it's not injective, so its kernel must have nonzero elements, so $c$ is an eigenvalue.
+\end{proof}
 \end{problem}
 
-\begin{problem}{4.8}
+\begin{problem}{4.8} Three Parts:
+\begin{itemize}
+\item
+\begin{proof}
+$S$ spans $V$ by definition. It remains to show that I can't write any of the elements as a linear combination of any of the others. I feel like should \textit{probably} be invoking that fourier stuff that Jan taught us right about now... but I'll wriggle my way out of that by doing a trick. Let's define for each function a 4-dimensional vector which evaluates the function at the points: $0 ,\dfrac{\pi}{4}, \dfrac{\pi}{3}$ and $\dfrac{\pi}{2}$. The vectors are: 
+\begin{align*}
+v_{sin(x)} = \begin{bmatrix}
+sin(0) = 0 \\
+sin(\dfrac{\pi}{4}) = .707 \\
+sin(\dfrac{\pi}{3}) = .866 \\
+sin(\dfrac{\pi}{2}) = 1
+\end{bmatrix}
+v_{cos(x)} = \begin{bmatrix}
+1 \\
+.707 \\
+.5 \\
+0
+\end{bmatrix}
+v_{sin(2x)} = \begin{bmatrix}
+0 \\
+1 \\
+.866 \\
+0
+\end{bmatrix}
+v_{cos(2x)} = \begin{bmatrix}
+1 \\
+0\\
+-.5 \\
+-1 
+\end{bmatrix}
+\end{align*}
+I want to check to see if these vectors are linearly independent. One check is to see if a matrix with these vectors as columns row-reduces to the identity matrix, which it does. And if I can't express any of the functions as a linear combination of the others at these 4 points, than I sure as heck know that I can't express any of them as a linear combination of the others generally, so they are linearly independent.
+\end{proof}
+\item (ii) $$
+D = \begin{bmatrix}
+0 & -1 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+0 & 0 & 0 & -2 \\
+0 & 0 & 2 & 0 
+\end{bmatrix}
+$$
+\item (iii) The spaces $E_1 = \text{ span} \{ sin(x), cos(x) \}$ and $E_2 = \text{ span} \{ sin(2x), cos(2x) \}$ are complementary and $D$- invariant.
+\end{itemize}
 \end{problem}
 
 \begin{problem}{4.13}
+First step is to find the basis of eigenvectors... Eigenvalues are $1, .4$ with eigenvectors $(2, 1)$ and $(1, -1)$ So I want to change to this basis, and I'll use 
+$$
+P = \begin{bmatrix}
+2 & 1 \\
+1 & -1\\
+\end{bmatrix}
+$$
+as my transition matrix. * (Check how to do change of basis lol) *
 \end{problem}
 
 \begin{problem}{4.15}
