@@ -145,6 +145,16 @@ as my transition matrix. * (Check how to do change of basis lol) *
 \end{problem}
 
 \begin{problem}{4.15}
+Let $\mathcal{B} = \{b_1, ..., b_n\}$ be an eigenbasis for $A$, with each $b_i$ corresponding to an eigenvalue $\lambda_i$. Consider the action of $f(A)$ on the vector $f(b_i)$. First I show that $Af(b_i) = \lambda_i f(b_i)$ \\
+Proof of the above: 
+\begin{align*}
+Af(b_i) &= A(a_0 + a_1b_i + a_2b_i^2 +... +a_nb_i^n = a_0A + a_1Ab_i + a_2Ab_i^2 + ... +a_nAb_i^n \\
+&= a_oA + a_1 \lambda_i b_i + a_2 \lambda_i^2 b_i +  ... + a_n \lambda_i^n b_i = f(\lambda_i)b_i
+\end{align*} 
+Then, see that
+\begin{align*}
+f(A)f(b_i) = (a_0 + a_1A + a_2A^2 + ... + a_nA^n)f(b_i) = a_0f(b_i) + a_1 \lambda_i f(b_i) + a_2 \lambda_i^2 f(b_i) + ... + \lambda_i^n f(b_i) = f(\lambda_i)f(b_i)
+\end{align*}
 \end{problem}
 
 \begin{problem}{4.16}
