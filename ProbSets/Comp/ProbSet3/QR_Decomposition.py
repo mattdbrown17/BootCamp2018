@@ -100,7 +100,3 @@ def Hessenberg(A):
             H[:,k+1:] = H[:, k+1:] - 2 * np.outer((H[:,k+1:] @ u), u.T)
             Q[k+1:,:] = Q[k+1:,:] - 2 * np.outer(u, (u.T @ Q[k+1:, :]))
         return H, Q.T
-
-A = np.random.random((8,8))
-print(Hessenberg(A)[0])
-print(linalg.hessenberg(A))
