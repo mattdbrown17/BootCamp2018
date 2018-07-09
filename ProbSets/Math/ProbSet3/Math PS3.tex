@@ -260,8 +260,29 @@ so we see that A is not positive semi definite and we have our contradiction.
 
 \begin{problem}{4.28}
 \begin{proof}
-First I'll show the facts about trace. \\ Recall that the trace is the sum of the eigenvalues, so $AB$ positive semidefinite $\implies$ tr$(AB) \geq 0$. I must show therefore that $AB$ is positive semidefinite. *Jaehyung has a good proof for this first part - see his repo!* \\
-**RETURN HERE**
+First I'll show the facts about trace. \\ Recall that the trace is the sum of the eigenvalues, so $AB$ positive semidefinite $\implies$ tr$(AB) \geq 0$. I must show therefore that $AB$ is positive semidefinite. (This part of the proof is from Jaehyung!)\\
+By the definition of a positive definite matrix $\langle x, Ax \rangle, \langle x, Bx\rangle \geq 0$, so their product is also $ \geq 0$. See that
+\begin{align*}
+\langle x, Ax \rangle \langle x, Bx \rangle &= (x^TAx)(x^TBx) \\
+&= (xx^T)(x^TABx) \\
+&= (xx^T) \langle x, ABx \rangle
+\end{align*}
+But for all nonzero $x$, we have $xx^T$ is a positive scalar, and
+$$ \langle x, Ax \rangle \langle x, Bx \rangle \geq 0 \implies \langle x, ABx \rangle \geq 0 $$
+Which means that $AB$ is positive semidefinite. \\ 
+For the second inequality, recall that any positive semidefinite matrix is orthonormally similar to a diagonal matrix. Let $A_D, B_D$ be the diagonal representations of $A, B$. Trace is invariant over change of basis, so tr$(AB) = $ tr$(A_DB_D)$. Let $\lambda_1, ..., \lambda_m$ be the positive eigenvalues of $A$, and $\phi_1, ..., \phi_n$ be the positive eigenvalues of $B$. Let $k = \text{min}\{m, n\}$. Then $$(A_DB_D) = \text{diag}(\lambda_1\phi_1, ..., \lambda_k\phi_k, 0 ,..., 0) \implies tr(A_DB_D) = \sum_{i=1}^k \lambda_i\phi_i $$
+On the other hand, 
+\begin{align*}
+\text{ tr}(A)\text{ tr}(B) &= (\lambda_1 + ... + \lambda_m)(\phi_1 + ... + \phi_n) \\
+&= \sum_{i=1}^{m} \sum_{j=1}^n \lambda_i \phi_j \\
+&\geq \sum_{i=1}^k \lambda_i\phi_i = \text{ tr}(AB)
+\end{align*} 
+Which is the second inequality. \\
+Finally, 
+\begin{align*}
+||AB||_F^2 = \text{ tr}(AA^HBB^H) \leq \text{ tr}(AA^H) \text{ tr}(BB^H) = ||A||_F ||B||_F^2 
+\end{align*}
+Which is the property that makes $|| \cdot ||_F$ a matrix norm.
 \end{proof}
 \end{problem}
 
@@ -317,7 +338,7 @@ $$||y^HAx||_2 = \text{sup}_{f \in \mathbb{F}} \frac{||(y^HAx)f||_2}{||f||_2} = |
 Well, singular values are always strictly positive, so 
 $$
 -I = \begin{bmatrix}
--1 & 0 \\
+-1 & 1 \\
 0 & -1
 \end{bmatrix}
 $$
@@ -346,12 +367,18 @@ $$
 $$
 \end{proof}
 \item (v) \begin{proof}
-Recall that for any $v \in \mathbb{F}$,
-$$A^\dagger v = \hat{x} \implies A^HA \hat{x} = A^H v \implies A^HAA^\dagger v = A^H v  $$
-... Come back to this - I don't know how to show that a map is a projection!
+To show that a matrix is an orthogonal projection, I must show that it is hermitian ($M^H = M$) and idempotent ($M^2 = M$). 
+By (iii) $A A^\dagger$ is hermitian. By (i) $AA^\dagger A A^\dagger = A A^\dagger \implies$ idempotence. \\
+It remains to show $\mathcal{R}(AA^\dagger) = \mathcal{R} (A)$. \\ 
+Trivially $\mathcal{R}(A A^\dagger) \subset \mathcal{R}(A)$. And (i) $\implies \mathcal{R}(A) \subset \mathcal{R}(A A^\dagger)$ 
 \end{proof}
 \item (vi) \begin{proof}
-
+By (iv) $A^\dagger A$ is hermitian. By (ii) $A^\dagger A A^\dagger A = A^\dagger A \implies$ idempotence. \\
+It remains to show $\mathcal{R}(A^\dagger A) = \mathcal{R} (A^H)$. By (iv), 
+$$AA^\dagger = (AA^\dagger)^H = A^H (A^\dagger)^H \implies \mathcal{R}(A^\dagger A) \subset \mathcal{R} (A^H) $$
+If we take the hermitian of both sides of (i), we see that 
+$$ (A^\dagger A)^H A^H = (A^\dagger A)^H A^H A^H \implies \mathcal{R} (A^H) \subset \mathcal{R}(A^\dagger A) $$
+(credit again to Jaehyung for these last two parts!)
 \end{proof}
 \end{itemize}
 \end{problem}
