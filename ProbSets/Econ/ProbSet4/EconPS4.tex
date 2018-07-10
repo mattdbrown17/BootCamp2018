@@ -1,0 +1,175 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}
+\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{definition}
+\newtheorem{exmp}{Example}[section]
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}[section]
+%-------------------------------------- 
+\begin{document}
+
+\title{Econ Problem Set 4}
+\author{Matthew Brown\\ 
+OSM Boot Camp 2018} %if necessary, replace with your course title
+ 
+\maketitle
+ 
+\begin{problem}{1}
+The first step is to substitute the form of the policy function ($K_{t+1} = e^{z_t}AK_{t}^\alpha$) into the euler equation. We see that on the left side:
+\begin{equation}
+\frac{1}{e^{z_t}K_t^\alpha - K_{t-1}} = \frac{1}{e^{z_t}K_t^\alpha(1- A)}
+\end{equation}
+And on the right side, we have
+\begin{align}
+\beta \mathbb{E} \Big( \frac{\alpha e^{z_{t+1}} K_{t+1}^{\alpha - 1}}{e^{z_t+1} K_{t+1}^\alpha - K_{t+2}} \Big) &= \beta \mathbb{E} \Big( \frac{\alpha e^{z_{t+1}} (e^{z_t}AK_{t}^\alpha)^{\alpha - 1}}{e^{z_{t+1}} (e^{z_t}AK_{t}^\alpha)^\alpha - (e^{z_t+1}A(e^{z_t}AK_{t}^\alpha))^\alpha} \Big) \\ 
+&= \beta \mathbb{E} \Big( \frac{\alpha e^{z_{t+1}} (e^{z_t}AK_{t}^\alpha)^{\alpha - 1}}{e^{z_{t+1}}(e^{z_t}AK_{t}^{\alpha^2})(1 - A)} \Big) \\
+&=  \beta \mathbb{E} \Big( \frac{\alpha}{ (e^{z_t}AK_{t}^\alpha)(1- A)}\Big)
+\end{align}
+Since we are in period $t$ and there is no uncertainty about anything inside the expected value, we can say
+\begin{equation}
+\frac{1}{e^{z_t}K_t^\alpha(1- A)} = \frac{\alpha \beta}{ (e^{z_t}AK_{t}^\alpha)(1- A)}
+\end{equation}
+Which is true if and only if $\alpha \beta = A$.
+\end{problem}
+
+\begin{problem}{2}
+The characterizing equations are:
+\begin{itemize}
+\item \textbf{Household}
+\begin{align}
+w_t(1-\tau)\frac{1}{c_t}) = \frac{a}{1-l_t} \\
+\frac{1}{c_t} = \beta \mathbb{E} \big[ \frac{1}{c_{t+1}}[(r_{t+1}-\delta)(1-\tau) +1] \big]
+\end{align}
+
+\item \textbf{Firm}
+\begin{align}
+R_t = \alpha e^{z_t} K^{\alpha - 1} L^{1-\alpha} \\
+W_t = (1 - \alpha) e^{z_t} K^\alpha L^{-\alpha}
+\end{align}
+\item \textbf{Government}
+\begin{equation}
+\tau[w_tl_t(r_t - \delta)k_t] = T_t
+\end{equation}
+\item \textbf{Market Clearing and Price Equivalence}
+\begin{align}
+l_t &= L_t \\
+k_t &= K_t \\
+w_t &= W_t \\
+r_t &= R_t 
+\end{align}
+We can't use the same tricks to solve for A, because the functional form from problem 1 does not yield the same nice cancellation.
+\end{itemize}
+\end{problem}
+
+\begin{problem}{3}
+Characterizing equations:
+\begin{itemize}
+\item \textbf{Household}
+\begin{align}
+w_t(1-\tau)c_t^{-\gamma} = \frac{a}{1-l_t} \\
+c_t^{-\gamma} = \beta \mathbb{E} \big[ c_{t+1}^{-\gamma}[(r_{t+1}-\delta)(1-\tau) +1] \big]
+\end{align}
+
+\item \textbf{Firm}
+\begin{align}
+R_t = \alpha e^{z_t} K_t^{\alpha - 1} L_T^{1-\alpha} \\
+W_t = (1 - \alpha) e^{z_t} K_t^\alpha L_t^{-\alpha}
+\end{align}
+\item \textbf{Government}
+\begin{equation}
+\tau[w_tl_t(r_t - \delta)k_t] = T_t
+\end{equation}
+\item \textbf{Market Clearing and Price Equivalence}
+\begin{align}
+l_t &= L_t \\
+k_t &= K_t \\
+w_t &= W_t \\
+r_t &= R_t 
+\end{align}
+\end{itemize}
+\end{problem}
+\begin{problem}{4}
+Characterizing Equations:
+\begin{itemize}
+\item \textbf{Household}
+\begin{align}
+w_t(1-\tau)c_t^{-\gamma} = -a(1-l_t)^{-\gamma} \\
+c_t^{-\gamma} = \beta \mathbb{E} \big[ c_{t+1}^{-\gamma}[(r_{t+1}-\delta)(1-\tau) +1] \big]
+\end{align}
+
+\item \textbf{Firm}
+\begin{align}
+R_t = e^z_t [\alpha K^{\eta}_t +(1-\alpha)L^{\eta}_t]^{\frac{1}{\eta} - 1} \alpha K_t^{\eta -1} \\
+W_t = e^z_t [\alpha K^{\eta}_t +(1-\alpha)L^{\eta}_t]^{\frac{1}{\eta} - 1} (1-\alpha) L_t^{\eta -1}
+\end{align}
+\item \textbf{Government}
+\begin{equation}
+\tau[w_tl_t(r_t - \delta)k_t] = T_t
+\end{equation}
+\item \textbf{Market Clearing and Price Equivalence}
+\begin{align}
+l_t &= L_t \\
+k_t &= K_t \\
+w_t &= W_t \\
+r_t &= R_t 
+\end{align}
+\end{itemize}
+\end{problem}
+
+\begin{problem}{5} Characterizing Equations:
+\begin{itemize}
+\item \textbf{Household}
+\begin{align}
+c_t^{-\gamma} = \beta \mathbb{E} \big[ c_{t+1}^{-\gamma}[(r_{t+1}-\delta)(1-\tau) +1] \big]
+\end{align}
+
+\item \textbf{Firm}
+\begin{align}
+R_t = \alpha e^{\alpha z_t} K_t^{\alpha - 1} L_T^{1-\alpha} \\
+W_t = (1 - \alpha) e^{\alpha z_t} K_t^\alpha L_t^{- \alpha}
+\end{align}
+
+\item \textbf{Government}
+\begin{equation}
+\tau[w_t(r_t - \delta)k_t] = T_t
+\end{equation}
+\item \textbf{Market Clearing and Price Equivalence}
+\begin{align}
+1 &= L_t \\
+k_t &= K_t \\
+w_t &= W_t \\
+r_t &= R_t 
+\end{align}
+
+\end{itemize}
+In steady state we get:
+\begin{align}
+c^{-\gamma} = \beta \mathbb{E} \big[ c^{-\gamma}[(r-\delta)(1-\tau)+1] \big] \\
+r = \alpha e^{\alpha z} k^{\alpha - 1} \\
+w = (1 - \alpha) e^{\alpha z} k^\alpha \\
+\tau[w(r - \delta)k] = T
+\end{align}
+The values of $r, w, k, and c$ are solved numerically in the jupyter notebook.
+\end{problem}
+
+
+\end{document}
