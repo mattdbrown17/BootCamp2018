@@ -163,13 +163,55 @@ r_t &= R_t
 \end{itemize}
 In steady state we get:
 \begin{align}
-c^{-\gamma} = \beta \mathbb{E} \big[ c^{-\gamma}[(r-\delta)(1-\tau)+1] \big] \\
-r = \alpha e^{\alpha z} k^{\alpha - 1} \\
-w = (1 - \alpha) e^{\alpha z} k^\alpha \\
+c^{-\gamma} = \beta \big[ c^{-\gamma}[(r-\delta)(1-\tau)+1] \big] \\
+r = \alpha k^{\alpha - 1} \\
+w = (1 - \alpha)  k^\alpha \\
 \tau[w(r - \delta)k] = T
 \end{align}
-The values of $r, w, k, and c$ are solved numerically in the jupyter notebook.
+Solving analytically, we see that 
+\begin{align}
+r = \frac{\frac{1}{\beta} - 1}{1 - \tau} + \delta = 7.287 \\
+k = \Big( \frac{r}{\alpha} \Big)^{\frac{1}{\alpha - 1}} = .121 \\
+w = (1 - \alpha) k^\alpha = 1.328 \\
+Y = k^\alpha = .729 \\
+I = \delta k = 2.213
+\end{align}
+The values of $r, w, k$, and $c$ are solved numerically in the jupyter notebook, and they confirm these numbers.
 \end{problem}
 
+\begin{problem}{6} Characterizing Equations (household from problem 4, firm from problem 5):
+\begin{itemize}
+\item \textbf{Household}
+\begin{align}
+w_t(1-\tau)c_t^{-\gamma} = -a(1-l_t)^{-\gamma} \\
+c_t^{-\gamma} = \beta \mathbb{E} \big[ c_{t+1}^{-\gamma}[(r_{t+1}-\delta)(1-\tau) +1] \big]
+\end{align}
 
+\item \textbf{Firm}
+\begin{align}
+R_t = \alpha e^{\alpha z_t} K_t^{\alpha - 1} L_T^{1-\alpha} \\
+W_t = (1 - \alpha) e^{\alpha z_t} K_t^\alpha L_t^{- \alpha}
+\end{align}
+\item \textbf{Government}
+\begin{equation}
+\tau[w_tl_t(r_t - \delta)k_t] = T_t
+\end{equation}
+\item \textbf{Market Clearing and Price Equivalence}
+\begin{align}
+l_t &= L_t \\
+k_t &= K_t \\
+w_t &= W_t \\
+r_t &= R_t 
+\end{align}
+\end{itemize}
+Steady state gives us:
+\begin{align}
+w(1 - \tau)c^{-\gamma} = - a (1 - l)^{-\gamma} \\
+c^{-\gamma} = \beta \big[c^{-\gamma} [(r - \delta)(1 - \tau) + 1]\big] \\
+r = \alpha k^{\alpha - 1} \\
+w = (1 - \alpha)  k^\alpha \\
+\tau[w(r - \delta)k] = T
+\end{align}
+\end{problem}
+These are solved numerically in the Jupyter notebook.
 \end{document}
