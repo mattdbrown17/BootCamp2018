@@ -1,0 +1,40 @@
+name: BrockMirman
+
+model_type: dtcscc
+
+symbols:
+
+   shocks: [e_z]
+   states: [k, z]
+   controls: [i]
+   parameters: [alpha, beta, rho, sig]
+
+definitions:
+    y: exp(z)*k^alpha
+    r: alpha*exp(z)*k^(alpha-1)
+    c: y - i
+
+equations:
+
+    arbitrage:
+        - 1 - beta*(c*r(1)/c(1)) | 0.0<= i <= inf
+    transition:
+        - k = i(-1)
+        - z = rho*z(-1) + e_z
+
+calibration:
+
+    # parameters
+    alpha : 0.35
+    beta : 0.98
+    rho : .95
+    sig : .02
+
+    # Steady state
+    e_z: 0
+    z: 0
+    k: 0.75
+    i: 0.10
+
+exogenous: !Normal
+    Sigma: [[sig_z**2]]

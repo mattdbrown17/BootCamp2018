@@ -33,6 +33,7 @@ OSM Boot Camp 2018} %if necessary, replace with your course title
  
 \maketitle
  
+\begin{section}{DSGE}
 \begin{problem}{1}
 The first step is to substitute the form of the policy function ($K_{t+1} = e^{z_t}AK_{t}^\alpha$) into the euler equation. We see that on the left side:
 \begin{equation}
@@ -112,8 +113,8 @@ Characterizing Equations:
 \begin{itemize}
 \item \textbf{Household}
 \begin{align}
-w_t(1-\tau)c_t^{-\gamma} = -a(1-l_t)^{-\gamma} \\
-c_t^{-\gamma} = \beta \mathbb{E} \big[ c_{t+1}^{-\gamma}[(r_{t+1}-\delta)(1-\tau) +1] \big]
+w_t(1-\tau)c_t^{-\gamma} = -a(1-l_t)^{-\xi} \\
+c_t^{-\gamma} = \beta \mathbb{E} \big[ c_{t+1}^{-\gamma}[(r_{t+1}-\delta)(1-\tau) +1] \big] 
 \end{align}
 
 \item \textbf{Firm}
@@ -183,8 +184,8 @@ The values of $r, w, k$, and $c$ are solved numerically in the jupyter notebook,
 \begin{itemize}
 \item \textbf{Household}
 \begin{align}
-w_t(1-\tau)c_t^{-\gamma} = -a(1-l_t)^{-\gamma} \\
-c_t^{-\gamma} = \beta \mathbb{E} \big[ c_{t+1}^{-\gamma}[(r_{t+1}-\delta)(1-\tau) +1] \big]
+w_t(1-\tau)c_t^{-\gamma} = -a(1-l_t)^{-\xi} \\
+c_t^{-\gamma} = \beta \mathbb{E} \big[ c_{t+1}^{-\gamma}[(r_{t+1}-\delta)(1-\tau) +1] \big] 
 \end{align}
 
 \item \textbf{Firm}
@@ -206,12 +207,37 @@ r_t &= R_t
 \end{itemize}
 Steady state gives us:
 \begin{align}
-w(1 - \tau)c^{-\gamma} = - a (1 - l)^{-\gamma} \\
+w(1 - \tau)c^{-\gamma} = - a (1 - l)^{-\xi} \\
 c^{-\gamma} = \beta \big[c^{-\gamma} [(r - \delta)(1 - \tau) + 1]\big] \\
-r = \alpha k^{\alpha - 1} \\
-w = (1 - \alpha)  k^\alpha \\
-\tau[w(r - \delta)k] = T
+r = \alpha k^{\alpha - 1}l^{1-\alpha} \\
+w = (1 - \alpha) k^\alpha l^{-\alpha} \\
+\tau[wl(r - \delta)k] = T
 \end{align}
 \end{problem}
 These are solved numerically in the Jupyter notebook.
+
+\end{section}
+
+
+
+\begin{section}{Linearization}
+
+\begin{problem}{1}
+I am very confused about how to log-linearize, so I didn't manage this or number 2.
+\end{problem}
+
+\begin{problem}{3}
+I shifted everything up a period since this made more sense to me. The epsilons can disappear because they turn to 0 in expected value. Also every variable is supposed to have a tilde, but I might have missed some.
+\begin{align*}
+\mathbb{E} \{ F \tilde{X}_{t+2} + G \tilde{X}_{t+1} + H \tilde{X}_{t} + L \tilde{Z}_{t+2} + M \tilde{Z}_{t+1}\} = 0 \\
+\mathbb{E} \{ F (P\tilde{X}_{t+1} + Q\tilde{Z}_{t+2}) + G (P\tilde{X}_{t} + Q\tilde{Z}_{t+1}) + H \tilde{X}_{t} + L (N \tilde{Z}_{t+1} + \epsilon_{t+1}) + M\tilde{Z}_{t+1} \} = 0 \\
+\mathbb{E} \{((FP)\tilde{X}_{t+1} + FQ\tilde{Z}_{t+2} + (GP+H)\tilde{X}_t + (GQ + LN + M)\tilde{Z}_{t+1} \} = 0 \\
+\mathbb{E} \{(FP)(P\tilde{X}_{t} + Q\tilde{Z}_{t+1}) + FQ(N \tilde{Z}_{t+1} + \epsilon_{t+1}) + (GP+H)\tilde{X}_t + (GQ + LN + M)\tilde{Z}_{t+1} = 0 \\ 
+((FP+G)P + H)X_t + [(FQ + L)N + (FP + G)Q +M]\tilde{Z}_{t+1} = 0
+\end{align*}
+
+\end{problem}
+
+\end{section}
+
 \end{document}
