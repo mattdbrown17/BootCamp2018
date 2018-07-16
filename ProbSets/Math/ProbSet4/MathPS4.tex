@@ -40,17 +40,53 @@ Df(x, y) = \begin{bmatrix}
 6xy +4y^2 + y & 3x^2 +8xy + x
 \end{bmatrix} \\
 D^2f(x, y) = \begin{bmatrix}
-6y & 6x + 1 \\
-6x + 1 & 8x
+6y & 6x + 8y + 1 \\
+6x + 8y + 1 & 8x
 \end{bmatrix}
 \end{align*}
 The critical points are $(0,0)$ and $(-\frac{1}{3}, -\frac{2}{3})$. $D^2f(0, 0)$ is indefinite, so the point is not a local extremum. $D^2f(-\frac{1}{3}, -\frac{2}{3})$ is actually "negative definite" (I think?) so the point is a local maximum.
+
+\begin{problem}{6.7} Two parts.
+\begin{itemize}
+\item (i) \begin{proof} To see that $Q = A^T+A$ is symetric, examine the coordinates.
+$$
+(A^T+A)_{ij} + A^T_{ij} + A_{ij} = A_{ji} + A^T_{ji} = (A^T+A)_{ji}
+$$
+Then, see since $x^TAx \in \mathbb{F}$ that 
+$$
+(x^TAx) = (x^TAx)^T = xA^Tx
+$$
+and so
+$$
+x^TQx = x^T(A^T+A)x = x^TA^Tx + x^TAx = 2x^TAx
+$$
+\end{proof}
+which shows that 6.17 is equivalent to 6.18.
+\item (ii)
+\begin{proof}
+Take the derivative of f and see that the FOC is:
+$$
+f'(x) = 0 \iff \frac{1}{2}(Q+Q^T)x - b = 0 \iff Qx = b
+$$
+\end{proof}
+\item (iii)
+\begin{proof}
+Note that $f''(x) = Q$, so the condition $f''(x) > 0$ will always be satisfied. \\
+$\Leftarrow$ \\ Suppose $Q$ is positive definite. Then $Q$ is invertible and if $x^* = Q^{-1}b$, then $x^*$ satisfies the second order sufficient condition for being a minimizer of $f$. \\
+$\Rightarrow$ The only way that a minimizer will exist is if the second derivative is positive definite, and this only happens if $Q$ is positive definite.
+\end{proof}
+\end{itemize}
+\end{problem}
 
 \begin{problem}{6.11}
 The minimizer of $f$ is $-\frac{b}{2a}$. If we apply Newton's method to any $x_0 \in \mathbb{R}$, 
 \begin{align*}
 x_1 = x_0 - \frac{f'(x_0)}{f''(x_0)} = x_0 - \frac{2ax_0+b}{2a} = \frac{2ax_0 - (2a_x0 +b)}{2a}= -\frac{b}{2a}
 \end{align*}
+\end{problem}
+
+\begin{problem}{6.15}
+See jupyter notebook
 \end{problem}
 
 \begin{problem}{7.1}
@@ -104,13 +140,84 @@ This will just be more manipulation of $\langle \rangle $ (RETURN TO THIS PROBLE
 \end{proof}
 \end{problem}
 
+\begin{problem}{7.8}
+\begin{proof}
+Let $\lambda \in [0,1]$, $x, y \in \mathbb{R}^m$. Then
+\begin{align*}
+g(\lambda x + (1-\lambda)y) &= f(A(\lambda x + (1-\lambda)y) + b) \\
+&= f(\lambda Ax + (1 - \lambda)Ay + b) \\
+&= f(\lambda(Ax + b) + (1 - \lambda)(Ay + b)) \\
+& \leq \lambda f(Ax+b) + (1 - \lambda) f(Ay+b) \\
+&= g(x) + g(y)
+\end{align*}
+and g is convex.
+\end{proof}
+\end{problem}
+
+\begin{problem}{7.12} Two parts 
+\begin{itemize}
+\item (i) Let $A$, $B \in PD_n(\mathbb{R})$. Then for any $x \in \mathbb{R}^n, \lambda \in [0,1]$
+\begin{align*}
+\langle x , (\lambda A + (1 - \lambda) B) x \rangle = \langle x, \lambda Ax \rangle + \langle x, (1 - \lambda) B y \rangle \geq 0
+\end{align*}
+and we see that $\lambda A + (1 - \lambda) B \in PD_n(\mathbb{R})$.
+\item (ii) There are a few intermediate results. (many thanks to Albi here!) First I'll show the following:
+\begin{lemma} A function $f: PD_n(\mathbb{R}) \rightarrow \mathbb{R} $ is convex if for every $A, B \in PD_n(\mathbb{R})$, the function $g:[0,1] \rightarrow \mathbb{R}$ given by $g(t) = f(tA +  (1-t)B)$ is convex.
+\end{lemma}
+\begin{proof}
+Suppose that for every $A, B \in PD_n(\mathbb{R})$, the function $g:[0,1] \rightarrow \mathbb{R}$ given by $g(t) = f(tA +  (1-t)B)$ is convex. Name the function $g$ associated to matrices $X, Y$ as $g_{XY}$ Then for $A$, $B \in PD_n(\mathbb{R}), t_1, t_2 \in \mathbb{R}, \lambda \in [0,1],$ we have left-hand side
+$$\lambda g_{AB}(t_1) + (1 - \lambda) g_{AB}(t_2) = \lambda(f(t_1A +  (1-t_1)B) + (1-\lambda)(f(t_2A +  (1-t_2)B)$$
+and right-hand side
+\begin{align*}
+g_{AB}(\lambda t_1 + (1 - \lambda)t_2) &= f((\lambda t_1 + (1 - \lambda)t_2)A + (1-(\lambda t_1 - (1 - \lambda)t_2))B) \\
+&= f(\lambda(t_1A + (1-t_1)B) + (1 - \lambda)(t_2A + (1-t_2)B)) 
+\end{align*}
+By the convexity of $g$, we know that the right hand side is greater than or equal to the left hand side. And since the choice of $t_1, t_2$ was arbitrary, we can set $t_1 = 1, t_2 = 0$ and get the result
+$$
+\lambda f(A) + (1 - \lambda) f(B) \leq f( \lambda A + (1-\lambda)B)
+$$
+for all matrices $A, B$, which proves the lemma.
+\end{proof}
+Next, I'll show a fact about G. \\
+First of all, I know that $A$ positive definite $\implies$ there exists a matrix $S$ such that $S^HS = A$ by a previous exercise. Now, $tA+(1-t)B=S^H(tI+(1-t)(S^H)^{-1}BS^{-1})S$,
+and we see that:
+\begin{align*}
+    g(t) = -\log(\text{det}(tA+(1-t)B))=
+    -\log(\text{det}(S^H(tI+(1-t)(S^H)^{-1}BS^{-1})S)).
+\end{align*} 
+We then use the properties of logs and determinants to see that:
+\begin{align*}
+    -\log(\text{det}(S^H(tI+(1-t)(S^H)^{-1}BS^{-1})S))&=
+    -\log(\text{det}(S^H)) \\ 
+    &- \log(\text{det}(tI+(1-t)(S^H)^{-1}BS^{-1})) - \log(\text{det}(S))\\
+    &=-\log(\text{det}(S^H)\text{det}(S)) \\
+     &- \log(\text{det}(tI+(1-t)(S^H)^{-1}BS^{-1}))\\
+    &=-\log(\text{det}(A))- \log(\text{det}(tI+(1-t)(S^H)^{-1}BS^{-1})).
+\end{align*}
+Remember that all this is equal to g(t) and call this fact (b). \\
+Now for a positive definite matrix $B$, I consider the $\lambda_1, ..., \lambda_n$ eigenvalues of the matrix $(S^H)^{-1} B S^{-1}$ and corresponding eigenvectors $x_1,..., x_n$ , where $S$ is as defined above for some positive definite matrix $A$ (as in right hand side of fact (b)). \\
+For any $x_i$,
+$$ (tI+(1-t)(S^H)^{-1}BS^{-1})x_i = tx_i + (1-t)(\lambda_i) x_i = (t + (1-t)\lambda	_i) x_i
+$$
+Which gives us an expression for the eigenvalues of $tI+(1-t)(S^H)^{-1}BS^{-1}$. We see now that:
+$$
+\text{det } tI+(1-t)(S^H)^{-1}BS^{-1} = \Pi_{i=1}^n(t + (1-t)\lambda_i))
+$$
+so by fact (b) and applying the properties of log:
+$$
+g(t) = =-\log(\text{det}(A))- \sum_{i=1}^n\log((t + (1-t)\lambda_i))
+$$
+Using this expression, we see that $g''(t)=\sum_{i=1}^n(1-\lambda_i)^2/(t+(1-t)\lambda_i)^2$, 
+which is nonnegative for all $t\in[0,1]$. By this fact, we can say that $g(t)$ is convex for all $t$, and it follows from lemma 0.1 that $f$ is convex.
+\end{itemize}
+\end{problem}
+
 \begin{problem}{7.13}
 I'll argue by contradiction. Suppose that $f$ is convex and bounded above, but $f$ is not a constant function. Then there exist points $x_1, x_2 \in \mathbb{R}^n$ where $f(x_1) \neq f(x_2)$. Let $M$ be the upper bound for $f$. \\ 
-Suppose WLOG that $f(x_2) \geq f(x_1)$ Consider the line through these two points $L_{f(a), f(b)} = \{ af(x_1) + bf(x_2) | a+ b = 1 \}$. I can choose $a^*, b^*$ so that $a^*f(x_1) + b^*f(x_2) > M$. 
-See that $f(x_2)$ is on the line segment between $a^*f(x_1)$ and  $b^*f(x_2)$, so it can be expressed as 
-$$f(x_2) = \lambda a^*f(x_1) + (1-\lambda) b^*f(x_2)$$
-for some $\lambda \in [0,1]$.  \\ 
-Recall that $a^*x_1 + b^*x_2$ is in the domain of our function, so we can also think about ... ABORTED ATTEMPT - I HAVE INTUITION IN GRAPHS BUT CANNOT FORMALIZE
+Suppose WLOG that $f(x_2) \geq f(x_1)$ Now consider the $G$ graph of $f$, 
+$$G \in \mathbb{R}^{n+1}, G = \{ (x, f(x)) | x \in \mathbb{R}^n \}$$
+I wasn't able to formally show the rest of the proof, but drawing a 2-dimensional picture helps, and I'm pretty sure it generalizes. \\
+The line passing through $f(x_1)$ and $f(x_2)$ does not lie on any hyperplane which a translate of the hyperplane $f(x) = M$ Therefore, the line intersects M at some point. However, $f( x_2 )$ must lie on or above this line in the n+1st dimension. Therefore, there also is a point $f(y)$ s.t. $f(y) > $ the value of the line in the n+1st dimension $> M$ and we have a contradiction.
 \end{problem}
 
 \begin{problem}{7.20}
@@ -124,7 +231,7 @@ $$
 f(\lambda x_ 1 + (1- \lambda)x_2) = \lambda f(x_1) + (1 - \lambda) f(x_2)
 $$
 for $\lambda \in [0,1]$, which is quite a handy fact.
-Indeed, this looks a LOT like the conditions we need for linearity - I just need a way to pass from $\lambda$ to other scalars... Ugh. I'm just hitting a roadblock tonight, I guess... PROBLEM INCOMPLETE
+Indeed, this looks a LOT like the conditions we need for linearity - I just need a way to pass from $\lambda$ to other scalars... I do not think that this is sufficient, but I'm fairly certain that this is the first part of the proof.
 \end{problem}
 
 \begin{problem}{7.21}\begin{proof} I'll show both implications.
