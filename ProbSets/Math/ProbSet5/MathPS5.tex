@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}
+\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{definition}
+\newtheorem{exmp}{Example}[section]
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}[section]
+%-------------------------------------- 
+\begin{document}
+
+\title{Math Problem Set 4}
+\author{Matthew Brown\\ 
+OSM Boot Camp 2018} %if necessary, replace with your course title
+ 
+\maketitle
+ 
+\begin{problem}{8.1}
+Jupyter notebook
+\end{problem}
+
+\begin{problem}{8.2}
+Jupyter Notebook
+\end{problem}
+
+\begin{problem}{8.3}
+Let $x_1$ denote the number of Barb soldiers sold and $x_2$ the number of Joey dolls. The optimization problem then is:
+\begin{align*}
+\text{min}_{x_1, x_2} & -(4 x_1 + 3 x_2) \\
+\text{subject to }
+& 2x_1 + 2 x_2 \leq 300 \\
+& 15x_1 + 10x_2 \leq 1800 \\
+& x_2 \leq 200
+x_1, x_2 \geq 0
+\end{align*}
+\end{problem}
+
+\begin{problem}{8.4}
+Let $x_{ij}$ be the units that flow between node i and j. The optimization problem is:
+\begin{align*}
+\text{min}_{x_{ij}, i \neq j} & 2x_{AB} + 5x_{AD} +4 x_{DE} + 3 x_{EF} + 2 x_{CF} + 5x_{BC} + 2 x_{BD} + 7x_{BE} + 9 x_{BF} \\
+\text{subject to }& x_{AB} + x_{AD} = 10\\
+& x_{BD} + x_{BE} +x_{BF} + x_{BC} - x_{AB} = 1 \\
+& x_{CF} - x_{BC} = -2 \\
+& - (x_{EF} + x_{BF} + x_{CF}) = -10 \\
+& x_{EF} - (x_{DE} + x_{BE}) = 4 \\
+& x_{DE} - (x_{AD} + x_{BD}) = -3 \\
+& 0 \leq x_{ij} \leq 6
+\end{align*}
+\end{problem}
+
+\begin{problem}{8.4}
+\end{problem}
+\end{document}
