@@ -1,29 +1,69 @@
-\documentclass[12pt]{article}
- 
-\usepackage[margin=1in]{geometry} 
-\usepackage{amsmath,amsthm,amssymb}
- 
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
- 
-\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{problem}[2][Problem]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{question}[2][Question]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\let\vec\mathbf
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\theoremstyle{definition}
-\newtheorem{lemma}{Lemma}[section]
-\theoremstyle{definition}
-\newtheorem{exmp}{Example}[section]
-\theoremstyle{definition}
-\newtheorem{remark}{Remark}[section]
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+\newcolumntype{C}{>{$}c<{$}}
+
 %-------------------------------------- 
 \begin{document}
 
@@ -34,7 +74,7 @@ OSM Boot Camp 2018} %if necessary, replace with your course title
 \maketitle
  
 \begin{problem}{8.1}
-Jupyter notebook
+Jupyter notebook (I got my constraint wrong - FIX ON JUPYTER)
 \end{problem}
 
 \begin{problem}{8.2}
@@ -44,11 +84,11 @@ Jupyter Notebook
 \begin{problem}{8.3}
 Let $x_1$ denote the number of Barb soldiers sold and $x_2$ the number of Joey dolls. The optimization problem then is:
 \begin{align*}
-\text{min}_{x_1, x_2} & -(4 x_1 + 3 x_2) \\
+\text{max}_{x_1, x_2} & (4 x_1 + 3 x_2) \\
 \text{subject to }
 & 2x_1 + 2 x_2 \leq 300 \\
 & 15x_1 + 10x_2 \leq 1800 \\
-& x_2 \leq 200
+& x_2 \leq 200 \\
 x_1, x_2 \geq 0
 \end{align*}
 \end{problem}
@@ -67,37 +107,315 @@ Let $x_{ij}$ be the units that flow between node i and j. The optimization probl
 \end{align*}
 \end{problem}
 
-\begin{problem}{8.5}
+\begin{problem}{8.5} \\
+(i)
+\begin{align*}
+  &\text{maximize} \ \ 3x_1 + x_2 \\
+  &\text{subject to} \ \ x_1 + 3x_2 + w_1 = 15 \\
+  &\qquad \qquad \ \ \  2x_1 + 3x_2 + w_2 = 18 \\
+  &\qquad \qquad \ \ \  x_1 - x_2 + w_3 = 4 \\
+  &\qquad \qquad \ \ \  x_1, x_2, w_1, w_2, w_3 \geq 0
+\end{align*}
+\begin{center}
+  \def\arraystretch{1.2}
+  \begin{tabular}{ C C C C C C C }
+    \zeta & = & & & 3x_1 & + & x_2 \\
+    \hline
+    w_1 & = & 15 & - & x_1 & - & 3x_2 \\
+    w_2 & = & 18 & - & 2x_1 & - & 3x_2 \\
+    w_3 & = & 4 & - & x_1 & + & x_2 \\
+    \hline \hline
+    \zeta & = & 12 & + & 4x_2 & - & 3w_3 \\
+    \hline
+    w_1 & = & 11 & - & 4x_2 & + & w_3 \\
+    w_2 & = & 10 & - & 5x_2 & + & 2w_3 \\
+    x_1 & = & 4 & + & x_2 & - & w_3 \\
+    \hline \hline
+    \zeta & = & 20 & - & \tfrac{4}{5}w_2 & - & \tfrac{7}{5}w_3 \\
+    \hline
+    w_1 & = & 3 & + & \tfrac{4}{5}w_2 & - & \tfrac{3}{5}w_3 \\
+    x_2 & = & 2 & - & \tfrac{1}{5}w_2 & + & \tfrac{2}{5}w_3 \\
+    x_1 & = & 6 & - & \tfrac{1}{5}w_2 & - & \tfrac{3}{5}w_3\\
+    \hline
+  \end{tabular}
+\end{center}
+Optimizer: $(6, 2)$ \\
+Optimum value: $20$
+
+(ii)
+\begin{align*}
+  &\text{maximize} \ \ 4x + 6y \\
+  &\text{subject to} \ \ -x + 3x_2 + w_1 = 11 \\
+  &\qquad \qquad \ \ \  x + y + w_2 = 27 \\
+  &\qquad \qquad \ \ \  2x + 5y + w_3 = 90 \\
+  &\qquad \qquad \ \ \  x, y, w_1, w_2, w_3 \geq 0
+\end{align*}
+\begin{center}
+  \def\arraystretch{1.2}
+  \begin{tabular}{ C C C C C C C }
+    \zeta & = & & & 4x & + & 6y \\
+    \hline
+    w_1 & = & 11 & + & x & - & y \\
+    w_2 & = & 27 & - & x & - & y \\
+    w_3 & = & 90 & - & 2x & - & 5y \\
+    \hline \hline
+    \zeta & = & 66 & + & 10x & - & 6w_1 \\
+    \hline
+    y & = & 11 & + & x & - & w_1 \\
+    w_2 & = & 16 & - & 2x & + & w_1 \\
+    w_3 & = & 35 & - & 7x & + & 5w_1 \\
+    \hline \hline
+    \zeta & = & 116 & + & \tfrac{8}{7}w_1 & - & \tfrac{10}{7}w_3 \\
+    \hline
+    y & = & 16 & - & \tfrac{2}{7}w_1 & - & \tfrac{1}{7}w_3 \\
+    w_2 & = & 6 & - & \tfrac{3}{7}w_1 & + & \tfrac{2}{7}w_3 \\
+    x & = & 5 & + & \tfrac{5}{7}w_1 & - & \tfrac{1}{7}w_3 \\
+    \hline \hline
+    \zeta & = & 132 & - &\tfrac{8}{3}w_2 & - & \tfrac{2}{7}w_3 \\
+    \hline
+    y & = & 12 & + & \tfrac{2}{3}w_2 & - & \tfrac{1}{3}w_3 \\
+    w_1 & = & 14 & - & \tfrac{7}{3}w_2 & + & \tfrac{2}{3}w_3 \\
+    x & = & 15 & - & \tfrac{5}{3}w_2 & + & \tfrac{1}{3}w_3 \\
+    \hline
+  \end{tabular}
+\end{center}
+Optimizer: $(15, 12)$ \\
+Optimum value: $132$ \\
 \end{problem}
 
 \begin{problem}{8.6}
+\begin{align*}
+  &\text{maximize} \ \ 4b + 3j \\
+  &\text{subject to} \ \ 15b + 10j + w_1 = 1800 \\
+  &\qquad \qquad \ \ \  2b + 2j + w_2 = 300 \\
+  &\qquad \qquad \ \ \  j + w_3 = 200 \\
+  &\qquad \qquad \ \ \  b, j, w_1, w_2, w_3 \geq 0
+\end{align*}
+\begin{center}
+  \def\arraystretch{1.2}
+  \begin{tabular}{ C C C C C C C }
+    \zeta & = & & & 4b & + & 3j \\
+    \hline
+    w_1 & = & 1800 & - & 15b & - & 10j \\
+    w_2 & = & 300 & - & 2b & - & 2j \\
+    w_3 & = & 200 & - & j \\
+    \hline \hline
+    \zeta & = & 450 & + & b & - & \tfrac{3}{2}w_2 \\
+    \hline
+    w_1 & = & 300 & - & 5b & + & 5w_2 \\
+    j & = & 150 & - & b & - & \tfrac{1}{2}w_2 \\
+    w_3 & = & 50 & + & b & + & \tfrac{1}{2}w_2 \\
+    \hline \hline
+    \zeta & = & 510 & - & \tfrac{1}{5}w_1 & - & \tfrac{1}{2}w_2 \\
+    \hline
+    b & = & 60 & - & \tfrac{1}{5}w_1 & + & w_2 \\
+    j & = & 90 & + & \tfrac{1}{5}w_1 & - & \tfrac{3}{2}w_2 \\
+    w_3 & = & 110 & - & \tfrac{1}{5}w_1 & + & \tfrac{3}{2}w_2 \\
+    \hline
+  \end{tabular}
+\end{center}
+Optimal choice: $60$ GI Barb soldiers, $90$ Joey dolls \\
+Maximal profit: $\$510$ \\
 \end{problem}
 
 \begin{problem}{8.7}
+
+\begin{itemize}
+\item (i) COME BACK TO
+\item (ii)
+\begin{align*}
+  &\text{maximize} \ \ 5x_1 + 2x_2 \\
+  &\text{subject to} \ \ 5x_1 + 3x_2 + x_3 = 15 \\
+  &\qquad \qquad \ \ \  3x_1 + 5x_2 + x_4 = 15 \\
+  &\qquad \qquad \ \ \  4x_1 - 3x_2 + x_5 = -12 \\
+  &\qquad \qquad \ \ \  x_1, x_2, x_3, x_4, x_5 \geq 0
+\end{align*}
+Auxiliary problem:
+\begin{align*}
+  &\text{maximize} \ \ -x_0 \\
+  &\text{subject to} \ \ 5x_1 + 3x_2 + x_3 - x_0 = 15 \\
+  &\qquad \qquad \ \ \  3x_1 + 5x_2 + x_4 - x_0 = 15 \\
+  &\qquad \qquad \ \ \  4x_1 - 3x_2 + x_5 - x_0 = -12 \\
+  &\qquad \qquad \ \ \  x_0, x_1, x_2, x_3, x_4, x_5 \geq 0
+\end{align*}
+\begin{center}
+  \def\arraystretch{1.2}
+  \begin{tabular}{ C C C C C C C C C C C }
+    \zeta & = & & & & & & - & x_0 \\
+    \hline
+    x_3 & = & 15 & - & 5x_1 & - & 3x_2 & + & x_0 \\
+    x_4 & = & 15 & - & 3x_1 & - & 5x_2 & + & x_0 \\
+    x_5 & = & -12 & - & 4x_1 & + & 3x_2 & + & x_0 \\
+    \hline \hline
+    \zeta & = &  -12 & - & 4x_1 & + & 3x_2 & - & x_5 \\
+    \hline
+    x_3 & = & 27 & - & x_1 & - & 6x_2 & + & x_5 \\
+    x_4 & = & 27 & + & x_1 & - & 8x_2 & + & x_5 \\
+    x_0 & = & 12 & + & 4x_1 & - & 3x_2 & + & x_5 \\
+    \hline \hline
+    \zeta & = & -\tfrac{15}{8} & - & \tfrac{29}{8}x_1 & - & \tfrac{3}{8}x_4 & - & \tfrac{5}{8}x_5 \\
+    \hline
+    x_3 & = & \tfrac{27}{4} & - & \tfrac{7}{4}x_1 & + & \tfrac{3}{4}x_4 & + & \tfrac{1}{4}x_5 \\
+    x_2 & = & \tfrac{27}{8} & + & \tfrac{1}{8}x_1 & - & \tfrac{1}{8}x_4 & + & \tfrac{1}{8}x_5 \\
+    x_0 & = & \tfrac{15}{8} & + & \tfrac{29}{8}x_1 & + & \tfrac{3}{8}x_4 & + & \tfrac{5}{8}x_5 \\
+    \hline
+  \end{tabular}
+\end{center}
+We see that the optimum for the auxillary problem is nonzero, so there is no way to make $x_0$ become $0$, and therefore we say that the original problem has no feasible points. \\
+
+\item (iii) For this one there's actually no need to set up an auxillary problem - which is \textit{really} nice.
+
+\begin{center}
+  \def\arraystretch{1.2}
+  \begin{tabular}{ C C C C C }
+	\hline \hline    
+    \zeta & = & & -3x_1 & + x_2 \\
+    \hline
+    w_1 & = & 4 & & -x_2 \\ 
+    w_2 & = & 6 & + 2x_1 & -3x_2 \\
+    \hline \hline
+    \zeta & = & 2 & -\frac{7}{3}x_1 & -\frac{1}{3}w_2 \\
+    \hline
+    w_1 & = & 2 & -2x_1 & +w_2 \\
+    x_2 & = & 2 & +\frac{2}{3}x_1 & -\frac{1}{3}w_2 \\
+  \end{tabular}
+\end{center}
+The optimum value is 2, which is attained at (0, 2).
+\end{itemize}
 \end{problem}
 
 \begin{problem}{8.8}
+I'll go very simple for these example questions...
+\begin{align*}
+  &\text{maximize} \ \ -x - y - z \\
+  &\text{subject to} \ \ -x + y \leq 1 \\
+  &\qquad \qquad \ \ \ x - y \leq 1 \\
+  &\qquad \qquad \ \ \ x - z \leq 1 \\
+  &\qquad \qquad \ \ \ -x + z \leq 1 \\
+  &\qquad \qquad \ \ \ x , y, z \geq 0
+\end{align*}
+gives an unbounded closed feasible region (it's like this rectangular prism corridor which shoots out from the origin), but the optimum is attained at (0, 0).
 \end{problem}
 
 \begin{problem}{8.9}
+I'll re-use the same example function, but change the objective function.
+\begin{align*}
+&\text{maximize} \ \ x + y + z \\
+  &\text{subject to} \ \ -x + y \leq 1 \\
+  &\qquad \qquad \ \ \ x - y \leq 1 \\
+  &\qquad \qquad \ \ \ x - z \leq 1 \\
+  &\qquad \qquad \ \ \ -x + z \leq 1 \\
+  &\qquad \qquad \ \ \ x, y ,z \geq 0
+\end{align*}
+I have the same feasible region, but now the minimum of the objective function is $(0, 0)$, and there is no maximum. (To see this note that the triple $(N, N, N)$ satisfies all constraints for any $N \in \mathbb{R}$)
 \end{problem}
 
 \begin{problem}{8.10}
+Boy, this example I've picked really is a workhorse:
+\begin{align*}
+&\text{maximize} \ \ x + y + z \\
+  &\text{subject to} \ \ -x + y \leq -1 \\
+  &\qquad \qquad \ \ \ x - y \leq -1 \\
+  &\qquad \qquad \ \ \ x - z \leq -1 \\
+  &\qquad \qquad \ \ \ -x + z \leq -1 \\
+  &\qquad \qquad \ \ \ x, y ,z \geq 0
+\end{align*}
+I've flipped all the constraints, and now I get an empty feasible region. This can be seen just by looking at the first two constraints - if $-x+y \leq -1$, then $x-y \geq 1 > -1 $, so we see that there are no points which satisfy both of the first two constraints.
 \end{problem}
 
 \begin{problem}{8.11}
+I'll modify the workhorse by bounding the prism within two hyperplanes (two more constraints - the geometric intuiton is more clear if you think of $- x - y - z \leq -1$ as $- x - y - z \geq -1$)
+\begin{align*}
+&\text{maximize} \ \ x + y + z \\
+  &\text{subject to} \ \ -x + y \leq 1 \\
+  &\qquad \qquad \ \ \ x - y \leq 1 \\
+  &\qquad \qquad \ \ \ x - z \leq 1 \\
+  &\qquad \qquad \ \ \ -x + z \leq 1 \\
+  &\qquad \qquad \ \ \ - x - y - z \leq -1 \\
+  &\qquad \qquad \ \ \ x + y + z \leq 5 \\
+  &\qquad \qquad \ \ \ x, y ,z \geq 0
+\end{align*}
+The auxillary problem is :
+\begin{align*}
+&\text{maximize} \ \ -x_0 \\
+  &\text{subject to} \ \ -x + y + x_0 \leq 1 \\
+  &\qquad \qquad \ \ \ x - y + x_0\leq 1 \\
+  &\qquad \qquad \ \ \ x - z + x_0 \leq 1 \\
+  &\qquad \qquad \ \ \ -x + z + x_0\leq 1 \\
+  &\qquad \qquad \ \ \ - x - y - z + x_0 \leq -1 \\
+  &\qquad \qquad \ \ \ x + y + z + x_0 \leq 5 \\
+  &\qquad \qquad \ \ \ x, y ,z \geq 0
+\end{align*}
+If this problem solves with an optimum $-x_0 = 0$ (which it should) then the point we get will be a feasible point for the original problem.
 \end{problem}
 
 \begin{problem}{8.12}
+\begin{align*}
+  &\text{maximize} \ \ -3x_1 + x_2 \\
+  &\text{subject to} \ \ x_2 + x_3 = 4 \\
+  &\qquad \qquad \ \ \  -2x_1 + 3x_2 + x_4 = 6 \\
+  &\qquad \qquad \ \ \  x_1, x_2, x_3, x_4 \geq 0
+\end{align*}
+\begin{align*}
+  &\text{maximize} \ \ 10x_1 - 57x_2 - 9x_3 -24x_4 \\
+  &\text{subject to} \ \ 0.5x_1 - 1.5x_2 - 0.5x_3 + x_4 + x_5 = 0 \\
+  &\qquad \qquad \ \ \  0.5x_1 - 5.5x_2 - 2.5x_3 + 9x_4 + x_6 = 0 \\
+  &\qquad \qquad \ \ \  x_1 + x_7 = 0 \\
+  &\qquad \qquad \ \ \  x_1, x_2, x_3, x_4, x_5, x_6, x_7 \geq 0
+\end{align*}
+\begin{center}
+  \def\arraystretch{1.2}
+  \begin{tabular}{ C C C C C C C C C C C C C }
+    \zeta & = & & & 10x_1 & - & 57x_2 & - & 9x_3 & - & 24x_4 \\
+    \hline
+    x_5 & = & & - & 0.5x_1 & + & 1.5x_2 & + &  0.5x_3 & - & x_4 \\
+    x_6 & = & & - & 0.5x_1 & + & 5.5x_2 & + & 2.5x_3 & - & 9x_4 \\
+    x_7 & = & 1 & - & x_1 \\
+    \hline \hline
+    \zeta & = & & - & 27x_2 & + & x_3 & - & 44x_4 & - & 20x_5 \\
+    \hline
+    x_1 & = & & & 3x_2 & + & x_3 & - & 2x_4 & - & 2x_5 \\
+    x_6 & = & & & 4x_2 & + & 2x_3 & - & 8x_4 & + & x_5 \\
+    x_7 & = & 1 & - & 3x_2 & - & x_3 & + & 2x_4 & + & 2x_5 \\
+    \hline \hline
+    \zeta & = & 1 & - & 30x_2 & - & 42x_4 & - & 18x_5 & - & x_7 & \\
+    \hline
+    x_1 & = & 1 & & & & & & & - & x_7 \\
+    x_6 & = & 2 & - & 2x_2 & - & 4x_4 & + & 5x_5 & - & 2x_7\\
+    x_3 & = & 1 & - & 3x_2 & + & 2x_4 & + & 2x_5 & - & x_7 \\
+    \hline
+\end{tabular}
+\end{center}
+The optimum is 1, which is attained at $(1, 0, 1, 0)$
 \end{problem}
 
 \begin{problem}{8.15}
+
 \end{problem}
 
-\begin{problem}{8.*}
+\begin{problem}{8.17}
+Let the primal problem be   
+\begin{align*}
+&\text{maximize}_x \ \ c^Tx \\
+  &\text{subject to} \ \ Ax \preceq b \\
+  &\qquad \qquad \ \ \ x \succeq 0
+\end{align*}
+then the dual is:
+\begin{align*}
+&\text{maximize}_y \ \ b^Ty \\
+  &\text{subject to} \ \ A^Ty \succeq c \\
+  &\qquad \qquad \ \ \ y \succeq 0
+\end{align*}
+Then by definition the dual of the dual is
+\begin{align*}
+&\text{maximize}_z \ \ c^Tz \\
+  &\text{subject to} \ \ (A^T)^Tz \succeq b \\
+  &\qquad \qquad \ \ \ z \succeq 0
+\end{align*}
+and since $(A^T)^T = A$, this is just the primal problem.
 \end{problem}
 
-\begin{problem}{8.*}
+\begin{problem}{8.18}
 \end{problem}
 
 \end{document}
