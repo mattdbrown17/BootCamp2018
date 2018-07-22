@@ -390,7 +390,21 @@ The optimum is 1, which is attained at $(1, 0, 1, 0)$
 \end{problem}
 
 \begin{problem}{8.15}
-
+\begin{proof}
+Note that we have $x, y \succeq 0$. Thus we have the following implications:
+\begin{align*}
+A^Ty \succeq c \implies (A^Ty)^Tx \geq c^Tx \\
+Ax \preceq b \implies (Ax)^Ty \leq b^Ty 
+\end{align*}
+And we see that
+\begin{align*}
+(Ax)^Ty = x^TA^Ty = (y^TA^Tx)^T = y^TA^Tx = (Ay)^Tx^*
+\end{align*}
+because all these are real numbers and thus equal to their transposes. We conclude by seeing
+\begin{align*}
+c^Tx \leq (A^Ty)^Tx = (A^Ty)^Tx \leq b^Tx
+\end{align*}
+\end{proof}
 \end{problem}
 
 \begin{problem}{8.17}
@@ -402,7 +416,7 @@ Let the primal problem be
 \end{align*}
 then the dual is:
 \begin{align*}
-&\text{maximize}_y \ \ b^Ty \\
+&\text{minimize}_y \ \ b^Ty \\
   &\text{subject to} \ \ A^Ty \succeq c \\
   &\qquad \qquad \ \ \ y \succeq 0
 \end{align*}
@@ -416,6 +430,68 @@ and since $(A^T)^T = A$, this is just the primal problem.
 \end{problem}
 
 \begin{problem}{8.18}
+Solving the standard problem:
+\begin{center}
+  \def\arraystretch{1.2}
+  \begin{tabular}{ C C C C C C C C C C C C C }
+    \zeta & = & & & x_1 & + & x_2 \\
+    \hline
+    w_1 & = & 3 & - & 2x_1 & - & x_2 \\
+    x_2 & = & 5 & - & x_1 & - & 3x_2 \\
+    x_5 & = & 4 & - & 2x_1 & - & 3x_2 \\
+    \hline \hline
+    \zeta & = & \tfrac{3}{2} & + & \tfrac{1}{2}x_2 & - & \tfrac{1}{2}w_1 \\
+    \hline
+    x_1 & = & \tfrac{3}{2} & - & \tfrac{1}{2}x_2 & - & \tfrac{1}{2}w_1 \\
+    w_2 & = & \tfrac{7}{2} & - & \tfrac{5}{2}x_2 & + & \tfrac{1}{2}w_1 \\
+    w_3 & = & 1 & - & 2x_2 & + & w_1 \\
+    \hline \hline
+    \zeta & = & \tfrac{7}{4} & - & \tfrac{1}{4}w_1 & - & \tfrac{1}{4}w_1 \\
+    \hline
+    x_1 & = & \tfrac{5}{4} & - & \tfrac{3}{4}w_1 & + & \tfrac{1}{4}w_3 \\
+    w_2 & = & \tfrac{9}{4} & - & \tfrac{3}{4}w_1 & + & \tfrac{5}{4}w_3 \\
+    x_2 & = & \tfrac{1}{2} & + & \tfrac{1}{2}w_1 & - & \tfrac{1}{2}w_3 \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Optimal point: $(\tfrac{5}{4}, \tfrac{1}{2})$ \\
+Optimum value: $\tfrac{7}{4}$ \\
+The dual problem is 
+
+\begin{align*}
+&\text{minimize} \ \ 3y_1 + 5y_2 + 4 y_3 \\
+  &\text{subject to} \ \ 2y_1 + y_2 + 3y_3 \geq 1 \\
+  &\qquad \qquad \ \ \ y_1 + 3y_2 + 3y_3 \geq 1\\
+  &\qquad \qquad \ \ \ y_1, y_2, y_3 \geq 0
+\end{align*}
+
+Which in standard form is:
+
+\begin{align*}
+&\text{maximize} \ \ -3y_1 - 5y_2 - 4 y_3 \\
+  &\text{subject to} \ \ - 2y_1 - y_2 - 3y_3 \leq -1 \\
+  &\qquad \qquad \ \ \ -y_1 - 3y_2 - 3y_3 \leq -1\\
+  &\qquad \qquad \ \ \ y_1, y_2, y_3 \leq 0
+\end{align*}
+(0, 0) is not a feasible point, so I create the auxillary problem:
+\begin{align*}
+&\text{maximize} \ \ -y_0 \\
+  &\text{subject to} \ \ - 2y_1 - y_2 - 3y_3 -y_0 \leq -1 \\
+  &\qquad \qquad \ \ \ -y_1 - 3y_2 - 3y_3 - y_0 \leq -1\\
+  &\qquad \qquad \ \ \ y_1, y_2, y_3, y_0 \leq 0
+\end{align*}
+\begin{center}
+  \def\arraystretch{1.2}
+  \begin{tabular}{ C C C C C C C C C C C C C }
+    \zeta & = & & & & & -y_0 \\
+    \hline
+    w_1 & = & -1 & + 2y_1 & + y_2 & + 3y_3 & + y_0 \\
+    w_2 & = & -1 & + y_1 & + 3y_2 & + 3y_3 & + y_0
+    \hline \hline    
+\end{tabular}
+\end{center}
+
 \end{problem}
 
 \end{document}
