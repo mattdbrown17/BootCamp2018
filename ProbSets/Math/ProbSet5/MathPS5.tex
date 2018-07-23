@@ -67,14 +67,14 @@
 %-------------------------------------- 
 \begin{document}
 
-\title{Math Problem Set 4}
+\title{Math Problem Set 5}
 \author{Matthew Brown\\ 
 OSM Boot Camp 2018} %if necessary, replace with your course title
  
 \maketitle
- 
+\textbf{MASSIVE CREDIT} to Reiko Laski for creating the templates for the dictionaries. Indeed some of these simplex writeups are. And apologies for the weird numbering formatting.
 \begin{problem}{8.1}
-Jupyter notebook (I got my constraint wrong - FIX ON JUPYTER)
+Jupyter notebook
 \end{problem}
 
 \begin{problem}{8.2}
@@ -351,12 +351,6 @@ If this problem solves with an optimum $-x_0 = 0$ (which it should) then the poi
 
 \begin{problem}{8.12}
 \begin{align*}
-  &\text{maximize} \ \ -3x_1 + x_2 \\
-  &\text{subject to} \ \ x_2 + x_3 = 4 \\
-  &\qquad \qquad \ \ \  -2x_1 + 3x_2 + x_4 = 6 \\
-  &\qquad \qquad \ \ \  x_1, x_2, x_3, x_4 \geq 0
-\end{align*}
-\begin{align*}
   &\text{maximize} \ \ 10x_1 - 57x_2 - 9x_3 -24x_4 \\
   &\text{subject to} \ \ 0.5x_1 - 1.5x_2 - 0.5x_3 + x_4 + x_5 = 0 \\
   &\qquad \qquad \ \ \  0.5x_1 - 5.5x_2 - 2.5x_3 + 9x_4 + x_6 = 0 \\
@@ -429,7 +423,7 @@ Then by definition the dual of the dual is
 and since $(A^T)^T = A$, this is just the primal problem.
 \end{problem}
 
-\begin{problem}{8.18}
+\begin{problem}{8.18} \\
 Solving the standard problem:
 \begin{center}
   \def\arraystretch{1.2}
@@ -454,11 +448,7 @@ Solving the standard problem:
     \hline
   \end{tabular}
 \end{center}
-
-Optimal point: $(\tfrac{5}{4}, \tfrac{1}{2})$ \\
-Optimum value: $\tfrac{7}{4}$ \\
-The dual problem is 
-
+The function attains its optimum $\tfrac{7}{4}$ at the point $(\tfrac{5}{4}, \tfrac{1}{2})$ \\
 \begin{align*}
 &\text{minimize} \ \ 3y_1 + 5y_2 + 4 y_3 \\
   &\text{subject to} \ \ 2y_1 + y_2 + 3y_3 \geq 1 \\
@@ -484,13 +474,41 @@ Which in standard form is:
 \begin{center}
   \def\arraystretch{1.2}
   \begin{tabular}{ C C C C C C C C C C C C C }
-    \zeta & = & & & & & -y_0 \\
+    \zeta & = & & & & & & & & - & v_0 \\
     \hline
-    w_1 & = & -1 & + 2y_1 & + y_2 & + 3y_3 & + y_0 \\
-    w_2 & = & -1 & + y_1 & + 3y_2 & + 3y_3 & + y_0
-    \hline \hline    
-\end{tabular}
+    v_1 & = & -1 & + & 2y_1 & + & y_2 & + & 2y_3 & + & v_0 \\
+    v_2 & = & -1 & + & y_1 & + & 3y_2 & + & 3y_3 & + & v_0 \\
+    \hline \hline
+    \zeta & = & -1 & + & 2y_1 & + & y_2 & + & 2y_3 & - & v_1 \\
+    \hline
+    v_0 & = & 1 & - & 2y_1 & - & y_2 & - & 2y_3 & + & v_1 \\
+    v_2 & = & & - & y_1 & + & 2y_2 & + & y_3 & + & v_1 \\
+    \hline \hline
+    \zeta & = & & & & & & & & - & v_0 \\
+    \hline
+    y_2 & = & 1 & - & 2y_1 & - & 2y_3 & + & v_1 & - & v_0 \\
+    v_2 & = & 2 & - & 5y_1 & - & 3y_3 & + & 3v_1 & - & 2v_0 \\
+    \hline \hline
+\end{tabular} 
 \end{center}
+Now I substitute into the objective function and solve the original problem.
+\begin{center}
+  \def\arraystretch{1.2}
+  \begin{tabular}{ C C C C C C C C C C C C C }
+    \zeta & = & -2 & + & y_1 & - & 3y_2 & - & 2v_1 \\
+    \hline
+    y_3 & = & \tfrac{1}{2} & - & y_1 & - & \tfrac{1}{2}y_2 & + & \tfrac{1}{2}v_1 \\
+    v_2 & = & \tfrac{1}{2} & - & 2y_1 & + & \tfrac{3}{2}y_2 & + & \tfrac{3}{2}v_1 \\
+    \hline \hline
+    \zeta & = & -\tfrac{7}{4} & - & \tfrac{3}{2}y_2 & - & \tfrac{5}{4}v_1 & - & \tfrac{1}{2}v_2 \\
+    \hline
+    y_3 & = & \tfrac{1}{4} & - & 2\tfrac{3}{2}y_2 & - & \tfrac{1}{4}v_1 & + & \tfrac{1}{2}v_2 \\
+    y_1 & = & \tfrac{1}{4} & + & \tfrac{3}{2}y_2 & + & \tfrac{3}{4}v_1 & - & \tfrac{1}{2}v_2 \\
+    \hline
+  \end{tabular}
+\end{center}
+The function attains its optimum $\tfrac{7}{4}$ at the point $(\tfrac{1}{4}, 0, \tfrac{1}{4})$ \\
+The two problems match up which is good!
 
 \end{problem}
 
