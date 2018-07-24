@@ -1,0 +1,140 @@
+\documentclass[12pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}
+\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{definition}
+\newtheorem{exmp}{Example}[section]
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}[section]
+%-------------------------------------- 
+\begin{document}
+
+\title{Math Problem Set 6}
+\author{Matthew Brown\\ 
+OSM Boot Camp 2018} %if necessary, replace with your course title
+ 
+\maketitle
+ 
+\begin{problem}{9.1}
+\begin{proof}
+Let $L$ be an unconstrained linear objective function. Suppose that $L$ has a minimizer $x^*$. I'll show that $L$ must be constant. \\ 
+\\
+Suppose that $L$ is not constant, i.e, there exists $y$ such that $Ly \neq Lx^*$. If $Ly < Lx^*$, then $x^*$ is not a minimizer and we have a contradiction. If $Ly > Lx^*$, then $L(x^* - y) < 0$ and we can consider the point $x^* + x^* - y$: 
+\begin{align*}
+L(x^* + x^* -y) = Lx^* + L(x^* - y) < Lx^*
+\end{align*} 
+so $x^*$ is not a minimizer and we have a contradiction
+\end{proof}
+\end{problem}
+
+\begin{problem}{9.2}
+\begin{proof}
+Minimizing $||Ax-b||$ is equivalent to \begin{align*}
+(Ax-b)^T(Ax-b) &= (x^TA^T - b^T)(Ax-b) \\ 
+&= x^TA^TAx - x^TA^Tb -b^TAx +2b^Tb \\
+&= x^TA^TAx -2b^TAx +2b^Tb
+\end{align*}
+Note that $A^TA$ is positive semidefinite. Taking the FOC of this expression yields:
+\begin{align*}
+2x^TA^TA - 2b^TA = 0 \\
+\iff x^TA^TA = b^TA \\
+\iff A^TAx = A^Tb
+\end{align*}
+And because $A^TA$ is positive definite, the second order-condition 
+$$
+2A^TA > 0
+$$
+will always be satisfied.
+\end{proof}
+\end{problem}
+
+\begin{problem}{9.3}
+Text explication - \textbf{Return here}
+\end{problem}
+
+\begin{problem}{9.4}
+\begin{proof}
+I'll need to show both directions.
+\begin{itemize}
+\item $\Leftarrow$ Suppose $x_0$ is chosen such that $Df(x_0)^T = Qx_0 - b$ is an eigenvector for $Q$, i.e, $Q(Qx_0-b) = \lambda (Qx_0-b)$ for some $\lambda \in \mathbb{R}$. We see that: 
+\begin{align*}
+x_1 = x_0 - \alpha Q(Qx_0 - b) = x_0 - \alpha \lambda (Qx_0 - b)
+\end{align*}
+I choose $\alpha$ to minimize $f(x_1)$. If $\alpha = \frac{1}{\lambda^2}$, then 
+\begin{align*}
+Qx_1 &= Q(x_0 - \alpha \lambda (Qx_0 - b)) \\ 
+&= Qx_0 - \alpha\lambda^2(Qx_0 - b) \\
+&= Qx_0 - Qx_0 - b\\
+&= b
+\end{align*}
+And if $Qx_1 = b$, then we know that $x_1$ is the minimum of the function, so I've chosen the right $\alpha$, and the algorithm converges in one step.
+\item $\Rightarrow$
+Suppose the algorithm converges in one step. Then I know that $Qx_1 = b$, and thus that 
+\begin{align*}
+Q(x_0 - \alpha Q(Qx_0-b)) = b \\
+\end{align*}
+Now consider the kernel of $I - \alpha Q$.
+\begin{align*}
+(I- \alpha Q)(Qx_0 - b) &= Qx_0 - b - \alpha Q(Qx_0 - b) \\
+&= Q(x_0 - \alpha Q(x_0-b)) - b \\
+&= Qx_1 - b \\
+&= 0
+\end{align*}
+So $Qx_1 - b \in$ Ker$(I- \alpha Q)$, and therefore it is an eigenvector of $Q$ with eigenvalue $\alpha$. \\
+\end{itemize}
+\end{proof} 
+\textbf{I have two different eigenvalues for the same eigenvectors - one of the directions must be wrong. Anyone see the issue?}
+\end{problem}
+
+\begin{problem}{9.5}
+\begin{proof}
+I will begin by stating without proof a result of vector calculus. \\
+\\ 
+\textbf{Fact:} The gradient of a function at a point $Df^T(x)$ is orthogonal to the level set of the function at the point $x$. \\
+\\
+This fact gives some idea about where I'm going with this proof: first I'll show that I can reduce the proposition to the statement that the two gradients $Df^T(x_k)$ and $Df^T(x_{k+1})$ are orthogonal, and then I'll use the fact to show that this is indeed the case. \\
+\\
+Consider $\langle x_{k+1} - x_{k}, x_{k+2} - x_{k+1} \rangle$.
+\begin{align*}
+\langle x_{k+1} - x_{k}, x_{k+2} - x_{k+1} \rangle &= \langle x_{k} - \alpha_{k+1} Df^T(x_k) - x_{k}, x_{k+1} - \alpha_{k+2} Df^T(x_k+1) - x_{k+1} \rangle \\
+&= \langle -\alpha_{k+1} Df^T(x_k), - \alpha_{k+2} Df^T(x_k+1) \rangle
+\end{align*}
+And if I want to set this equal to zero, I can pull out the scalars $-\alpha_{k+1}, -\alpha_{k+2}$ and set $\langle Df^T(x_k), Df^T(x_k+1) \rangle = 0$. So we see that 
+$$
+\langle x_{k+1} - x_{k}, x_{k+2} - x_{k+1} \rangle = 0 \iff \langle Df^T(x_k), Df^T(x_k+1) \rangle = 0
+$$ 
+I'll now show that the gradients are orthogonal. \\
+\\
+Consider the gradient $Df^T(x_k)$. $-Df^T(x_k)$ is the direction of steepest descent, and $x_{k+1} = x_k - \alpha Df^T(x_k)$. We choose $\alpha$ to minimize $f(x_{k+1})$. Consider the evaluation of the gradient $Df(x_k)$ at the point $x_{k+1}$. \\
+\\
+\textbf{Claim:} $Df(x_k)(x_{k+1}) = 0$\\
+\\
+\textit{Proof of Claim:} This will be an intuitive argument which follows from the continuity of the derivative ($f$ is $C^1$). Suppose $-Df(x_k)(x_{k+1}) < 0$. Then, I can go a bit further along the descent to 
+$$x^* = x_k - (\alpha + \varepsilon ) Df^T(x_k), \varepsilon > 0$$
+such that $f(x^*) < f(x_{k+1})$. Similarly, if $-Df(x_k)(x_{k+1}) > 0$, then I can go a bit less far along the descent to 
+$$x^* = x_k - (\alpha - \varepsilon) Df^T(x_k), \varepsilon > 0$$
+such that $f(x^*) < f(x_{k+1})$. So we see that $Df(x_k)(x_{k+1}) = 0$, which proves the claim. \\
+\\
+Excellent. Now, $Df(x_k)(x_{k+1}) = 0$, so the gradient $Df^T(x_k)$ is tangent to the level set of $f$ at the point $x_{k+1}$. (\textit{this is the shakiest part of this argument - I think this is true, but I don't know how to show it}) We know from our fact that $Df^T(x_{k+1})$ is orthogonal to the level set of $f$ at $x_{k+1}$, so it is orthogonal to $Df^T(x_k)$ as well, which concludes the proof.
+\end{proof}
+
+\end{problem}
+\end{document}
