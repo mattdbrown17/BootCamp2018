@@ -2,10 +2,12 @@
  
 \usepackage[margin=1in]{geometry} 
 \usepackage{amsmath,amsthm,amssymb}
- 
+\usepackage{graphicx}
+
+\graphicspath{ {C:/Users/mattd/OneDrive/Documents/LatexImages/OSM2018/MathPS5/} }
+
 \newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
- 
+\newcommand{\Z}{\mathbb{Z}} 
 \newenvironment{theorem}[2][Theorem]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 \newenvironment{exercise}[2][Exercise]{\begin{trivlist}
@@ -133,8 +135,74 @@ such that $f(x^*) < f(x_{k+1})$. Similarly, if $-Df(x_k)(x_{k+1}) > 0$, then I c
 $$x^* = x_k - (\alpha - \varepsilon) Df^T(x_k), \varepsilon > 0$$
 such that $f(x^*) < f(x_{k+1})$. So we see that $Df(x_k)(x_{k+1}) = 0$, which proves the claim. \\
 \\
-Excellent. Now, $Df(x_k)(x_{k+1}) = 0$, so the gradient $Df^T(x_k)$ is tangent to the level set of $f$ at the point $x_{k+1}$. (\textit{this is the shakiest part of this argument - I think this is true, but I don't know how to show it}) We know from our fact that $Df^T(x_{k+1})$ is orthogonal to the level set of $f$ at $x_{k+1}$, so it is orthogonal to $Df^T(x_k)$ as well, which concludes the proof.
+Excellent. Now, $Df(x_k)(x_{k+1}) = 0$, so the gradient $Df^T(x_k)$ is tangent to the level set of $f$ at the point $x_{k+1}$. We know from our fact that $Df^T(x_{k+1})$ is orthogonal to the level set of $f$ at $x_{k+1}$, so it is orthogonal to $Df^T(x_k)$ as well, which concludes the proof. \\
+\\
+See Figure 1  for some geometric intuition. \\
+%\begin{figure} 
+%\centering
+%\includegraphics[width=.8\linewidth
+%]{SD.jpg}
+%\caption{A Nice Picture}
+%\label{fig:boat1}
+%\end{figure}
 \end{proof}
-
 \end{problem}
+
+\begin{problem}{9.6}
+Jupyter
+\end{problem}
+
+\begin{problem}{9.7}
+Jupyter
+\end{problem}
+
+\begin{problem}{9.8}
+Jupyter
+\end{problem}
+
+\begin{problem}{9.9}
+Jupyter
+\end{problem}
+
+\begin{problem}{9.10} 
+\begin{proof}
+We know that $x^*$ is the unique minimizer of $f$ iff 
+\begin{align*}
+f'(x) = 0 &\iff Qx^* - b = 0 \iff x^* = Q^{-1}b 
+\end{align*}
+Now let us start Newton's method from an arbitrary initial guess $x_0$. Calculate $x_1$:
+\begin{align*}
+x_1 &= x_0 - D^2f(x_0)^{-1}Df(x_0) \\
+&= x_0 - Q^{-1} (Qx_0 - b) \\
+&= x_0 - x_0 + Q^{-1}b = Q^{-1}b
+\end{align*}
+which is what was desired.
+\end{proof}
+\end{problem}
+
+\begin{problem}{9.12}
+\begin{proof}
+This is quick. Choose $\lambda_i$ arbitrarily, and let $v_i$ be its eigenvector. Then
+$$
+Bv_i = (A + \mu I)v_i = Av_i + \mu I v_i = \lambda_i v_i + \mu v_i = (\lambda_i + \mu) v_i
+$$
+\end{proof}
+\end{problem}
+
+\begin{problem}{9.15}
+Tedious matrix algebra - multiply the left by right, see sum is one. \textbf{RETURN HERE}
+\end{problem}
+
+\begin{problem}{9.16}
+\end{problem}
+
+\begin{problem}{9.17}
+\end{problem}
+
+\begin{problem}{9.18}
+\end{problem}
+
+\begin{problem}{9.20}
+\end{problem}
+
 \end{document}
