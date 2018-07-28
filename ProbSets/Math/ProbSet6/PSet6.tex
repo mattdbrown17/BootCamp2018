@@ -116,7 +116,7 @@ This fact gives some idea about where I'm going with this proof: first I'll show
 \\
 Consider $\langle x_{k+1} - x_{k}, x_{k+2} - x_{k+1} \rangle$.
 \begin{align*}
-\langle x_{k+1} - x_{k}, x_{k+2} - x_{k+1} \rangle &= \langle x_{k} - \alpha_{k+1} Df^T(x_k) - x_{k}, x_{k+1} - \alpha_{k+2} Df^T(x_k+1) - x_{k+1} \rangle \\
+\langle x_{k+1} - x_{k}, x_{k+2} - x_{k+1} \rangle &= \langle x_{k} - \alpha_{k+1} Df^T(x_k) - x_{k}, x_{k+1} - \alpha_{k+2} Df^T(x_{k+1}) - x_{k+1} \rangle \\
 &= \langle -\alpha_{k+1} Df^T(x_k), - \alpha_{k+2} Df^T(x_k+1) \rangle
 \end{align*}
 And if I want to set this equal to zero, I can pull out the scalars $-\alpha_{k+1}, -\alpha_{k+2}$ and set $\langle Df^T(x_k), Df^T(x_k+1) \rangle = 0$. So we see that 
@@ -182,27 +182,83 @@ which is what was desired.
 
 \begin{problem}{9.12}
 \begin{proof}
-This is quick. Choose $\lambda_i$ arbitrarily, and let $v_i$ be its eigenvector. Then
+Choose $\lambda_i$ arbitrarily, and let $v_i$ be its eigenvector. Then
 $$
 Bv_i = (A + \mu I)v_i = Av_i + \mu I v_i = \lambda_i v_i + \mu v_i = (\lambda_i + \mu) v_i
 $$
 \end{proof}
 \end{problem}
 
-\begin{problem}{9.15}
-Tedious matrix algebra - multiply the left by right, see sum is one. \textbf{RETURN HERE}
+\begin{problem}{9.15} I'll multiply the left side by the right: 
+\begin{proof}
+\begin{align*}
+(A+BCD)(A^{-1} - A^{-1}B(C^{-1} + DA^{-1}B)^{-1}DA^{-1}) \\
+= AA^{-1} - AA^{-1}B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} + BCDA^{-1} - BCDA^{-1}B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} \\
+= I - B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} + BCDA^{-1} - BCDA^{-1}B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} \\
+= I - B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} + BCDA^{-1} - BCDA^{-1}B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} \\
+= I + BCDA^{-1} - (B(C^{-1} + DA^{-1}B)^{-1} + BCDA^{-1}B(C^{-1} + DA^{-1}B)^{-1})DA^{-1} \\
+= I + BCDA^{-1} - ((B+BCDA^{-1}B)(C^{-1} + DA^{-1}B)^-{1}))DA^{-1} \\
+= I + BCDA^{-1} - (BC(C^{-1}+DA^{-1}B)(C^{-1} + DA^{-1}B)^-{1}))DA^{-1} \\
+= I + BCDA^{-1} - BCDA^{-1}
+= I
+\end{align*}
+
+\end{proof}
 \end{problem}
 
 \begin{problem}{9.16}
-\end{problem}
-
-\begin{problem}{9.17}
+I'm not seeing how to apply the theorem - \textbf{RETURN HERE}
 \end{problem}
 
 \begin{problem}{9.18}
+\begin{proof}
+I choose $\alpha_k$ to minimize the function $\phi_k(\alpha) = f(x_k + \alpha_k d_k)$, so I need $\phi_k'(\alpha_k) = 0$. Because $f$ is a quadratic, I know that 
+\begin{align*}
+\phi_k'(\alpha) &= - Df(x_k + \alpha_k d_k) \cdot d_k \\
+&=[(x_k - \alpha_k d_k)^T Q - b^T] d_k \\
+&= [x_k^TQ - b^T]d_k - (\alpha_kd_k)^TQd_k
+= r_k^Td_k - \alpha_k(d_k^TQd_k)
+\end{align*}
+And from this last line we see:
+$$
+\alpha_k = \frac{r_k^Td_k}{d_k^TQd_k}
+$$
+\end{proof}
 \end{problem}
 
 \begin{problem}{9.20}
+\begin{proof}
+I will prove that $r_i^T r_k = 0$ for all $i < 0$ by induction on $k$. \\
+\\
+\textit{Base Case:} $k = 1$. Recall that in my proof from Problem 9.5, I showed that $Df^T(x_k)$ was orthogonal to $Df^T(x_{k+1})$, where $x_{k+1} = x_k - \alpha_k Df^T(x_k)$. In general the conjugate gradient method constructs $x_{k+1}$ differently, so this theorem does not always apply. But in the first step, $r_0 = d_0 = -Df(x_0)^T$, so we see that:
+\begin{align*}
+x_1 = x_0 + \alpha_0 d_0 = x_0 - \alpha_0 Df^T(x_0) \\
+\implies r_1 = Df(x_1)^T \perp Df(x_0)^T = r_0 
+\end{align*}
+which shows the base case. \\
+\\
+\textit{Inductive Case:} Assume that 
+$$r_i^T r_k' = 0 \text{ for all } i < k'$$ is true for any $k' < k$. I will show that the statement is also true for $k$. There is a bit of preliminary work necessary for my argument. Define the sets $D_{k-1} = $ span$\{d_0,...,d_{k-1}\}$ and $R_{k-1} = $ span$\{r_0, ... r_{k-1}\}$. I'll state and justify a few facts about these sets. \\
+\\
+\textbf{Fact 1}: $D_{k-1}$ and $R_{k-1}$ are both bases for subspaces of dimension $k-1$.\\
+\textit{Justification}: $R_{k-1}$ and $D_{k-1}$ are both orthogonal over some inner product space on $R^{n}$: $R_{k-1}$ by the inductive assumption, and $D_{k-1}$ by the property that it is $Q$-conjugate (and so orthogonal over the inner product space $\langle \cdot, \cdot \rangle_Q$. It is a theorem somewhere that orthogonal vectors are linearly independent, which shows the fact. \\
+\\
+\textbf{Fact 2}: $D_{k-1} \subset R_{k-1}$ \\
+\textit{Justification}: If $d \in D_{k+1}$, then it is a linear combination of elements $d_i, i \in \{0, 1, ..., k-1\}$. Therefore this fact will follow if I show that any element $d_i \in R_{k-1}$. And indeed, 
+\begin{align*}
+d_i &= r_{i} - \beta_{i-1}d_{i-1} \\
+&= r_i - \beta_{i-1}(r_{i-1} - \beta_{i-2}d_{i-2}) = r_i - \beta_{i-1} r_{i-1} + \beta_{i-1} \beta_{i-2} d_{i-2} \\
+&= ... \\
+&= \sum_{j=0}^i \bigg( \prod_{k=j}^{i-1} -\beta_{k} \bigg) r_j 
+\end{align*}
+The actual final expression doesn't matter - what matters is that $d_i$ is expressed as a linear combination of the $r_i$s. 
+\\
+\\
+\textbf{Fact 3}: $D_{k+1} = R_{k+1}$ \\
+\textit{Justification}: This follows from facts 1 and 2: Since the two spaces have the same dimension, one inclusion implies equality. \\
+\\
+Now, we'll put this new knowledge to work and prove the inductive step. By Lemma 9.5.3, $d_i^Tr_k = 0$ for any $i < j$. This means that $r_k \in D_{k-1}^\perp = R_{k-1}^\perp$ with the usual inner product, and therefore $r_i^Tr_k = 0$ for all $i < k$, which was what we wanted to show. 
+\end{proof}
 \end{problem}
-
+\textit{Note: There has to be a simpler way to do this proof. Apologies if this was very roundabout, but it's all I could think of!}
 \end{document}
