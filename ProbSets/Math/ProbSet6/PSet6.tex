@@ -68,9 +68,18 @@ will always be satisfied.
 \end{proof}
 \end{problem}
 
-\begin{problem}{9.3}
-The three methods are all good for different things. The steepest descent method has the steps which take the smallest amount of computational power, but it takes a larger number of steps to converge on average. Conversely, Newton methods converge in fewer steps, but the steps are much more computationally expensive. The Conjugate gradient method provides a nice middle ground between the two - it takes fewer steps than the steepest descent, and the steps are less expensive than the newton method.
+\begin{problem}{9.3} \text{ }\\
+\textbf{Steepest Descent} \\
+This method computes the gradient at each point. We know that the negative of the gradient is the direction of steepest descent, so we then search for the distance $\alpha$ to travel along that gradient which makes the function as small as possible. Repeat until some stopping criterion is fulfilled. Geometrically, the fact I prove in 9.5 shows that the path of steepest descent is orthogonal to the previous path of steepest descent. This method works only for differentiable functions.  \\
 \\
+\textbf{Newton's Method} \\
+Start with original guess $x_0$, and minimize a degree-two taylor approximation of the function at the point $x_0$. The point at which the approximation attains its minimum is the new $x$, and we can iterate this process until a stopping criterion is reached. This method works only for functions with positive definite Hessians. \\ 
+\\
+\textbf{Conjugate Gradient} \\
+This is a modification of steepest descent so that subsequent iterations converge in a direction that is "Q - conjugate" to the previous descent directions. It only works for quadratic functions. Some geometric intuition that would come if we did a change of basis from the standard basis to the basis of "Q-conjugate" vectors that we use in constructing the problem - in this case, I \textit{think} the descent vectors are orthogonal with the usual inner product! \\
+\\
+\textbf{Relative strengths and weaknesses:} \\
+The three methods are all good for different types of problem. The steepest descent method has the steps which take the smallest amount of computational power, but it takes a larger number of steps to converge on average. Conversely, Newton methods converge in fewer steps, but the steps are much more computationally expensive. The Conjugate gradient method provides a nice middle ground between the two - it takes fewer steps than the steepest descent, and the steps are less expensive than the newton method.\\
 \\
 If the dimension is not too big, and especially if the function is differentiable we can use Newton's method. It's often a good idea to use steepest descent to get a better starting $x_0$ for Newton's method or when the function is not differentiable. If the dimensionality is very large, we are forced to resort to conjugate gradient.
 \end{problem}
@@ -204,7 +213,13 @@ $$
 \end{problem}
 
 \begin{problem}{9.16}
-I'm not seeing how to apply the theorem - \textbf{RETURN HERE}
+Thanks Rebekah for the help here. \\
+For Sherman-Morrison-Woodbury, let $A = A_k^{-1}, B = y-A_ks_k, C= ||s_k||^2, D = s_k^T.$ Then 
+\begin{align*}
+A_{k+1} = A+(BCD)^{-1} &= A^{-1} - A^{-1}B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} \\
+&= A_k^{-1} - A_k^{-1} \frac{(y_k - A_k s_k)s^T_k A^{-1}_k}{(||s_k||^2 + s^T_k A^{-1}_k (y_k - A_k s_k))} \\
+&= A_k^{-1} + \frac{(s_k - A^{-1}_k y_k)s^T_kA^{-1}_k}{s^T_k A^{-1}_k y_k }
+\end{align*}  
 \end{problem}
 
 \begin{problem}{9.18}
