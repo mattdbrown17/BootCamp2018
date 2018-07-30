@@ -69,41 +69,38 @@ will always be satisfied.
 \end{problem}
 
 \begin{problem}{9.3}
-Text explication - \textbf{Return here}
+The three methods are all good for different things. The steepest descent method has the steps which take the smallest amount of computational power, but it takes a larger number of steps to converge on average. Conversely, Newton methods converge in fewer steps, but the steps are much more computationally expensive. The Conjugate gradient method provides a nice middle ground between the two - it takes fewer steps than the steepest descent, and the steps are less expensive than the newton method.
+\\
+\\
+If the dimension is not too big, and especially if the function is differentiable we can use Newton's method. It's often a good idea to use steepest descent to get a better starting $x_0$ for Newton's method or when the function is not differentiable. If the dimensionality is very large, we are forced to resort to conjugate gradient.
 \end{problem}
 
 \begin{problem}{9.4}
 \begin{proof}
 I'll need to show both directions.
 \begin{itemize}
-\item $\Leftarrow$ Suppose $x_0$ is chosen such that $Df(x_0)^T = Qx_0 - b$ is an eigenvector for $Q$, i.e, $Q(Qx_0-b) = \lambda (Qx_0-b)$ for some $\lambda \in \mathbb{R}$. We see that: 
+\item $\Leftarrow$ Suppose $x_0$ is chosen such that $Df(x_0)^T = Qx_0 - b$ is an eigenvector for $Q$, i.e, $Q(Qx_0-b) = \lambda (Qx_0-b)$ for some $\lambda \in \mathbb{R}$. Recall the defintion of $x_1$ for quadratic forms: 
 \begin{align*}
-x_1 = x_0 - \alpha Q(Qx_0 - b) = x_0 - \alpha \lambda (Qx_0 - b)
+x_1 = x_0 - \alpha (Qx_0 - b)
 \end{align*}
-I choose $\alpha$ to minimize $f(x_1)$. If $\alpha = \frac{1}{\lambda^2}$, then 
+I choose $\alpha$ to minimize $f(x_1)$. If $\lambda = \frac{1}{\alpha}$, then 
 \begin{align*}
-Qx_1 &= Q(x_0 - \alpha \lambda (Qx_0 - b)) \\ 
-&= Qx_0 - \alpha\lambda^2(Qx_0 - b) \\
+Qx_1 &= Q(x_0 - \alpha (Qx_0 - b)) \\ 
+&= Qx_0 - \alpha\lambda(Qx_0 - b) \\
 &= Qx_0 - Qx_0 - b\\
 &= b
 \end{align*}
-And if $Qx_1 = b$, then we know that $x_1$ is the minimum of the function, so I've chosen the right $\alpha$, and the algorithm converges in one step.
+as desired.
 \item $\Rightarrow$
 Suppose the algorithm converges in one step. Then I know that $Qx_1 = b$, and thus that 
 \begin{align*}
-Q(x_0 - \alpha Q(Qx_0-b)) = b \\
+Q (x_0 - \alpha (Qx_0 -b)) = Qx_0 - \alpha Q(Qx_0-b) = b \\
 \end{align*}
-Now consider the kernel of $I - \alpha Q$.
-\begin{align*}
-(I- \alpha Q)(Qx_0 - b) &= Qx_0 - b - \alpha Q(Qx_0 - b) \\
-&= Q(x_0 - \alpha Q(x_0-b)) - b \\
-&= Qx_1 - b \\
-&= 0
-\end{align*}
-So $Qx_1 - b \in$ Ker$(I- \alpha Q)$, and therefore it is an eigenvector of $Q$ with eigenvalue $\alpha$. \\
+Rearranging, we get 
+$$Q(Qx_0-b) = \frac{1}{\alpha}(Qx_0 - b) $$
+so $Qx_0-b$ is an eigenvector with eigenvalue $\frac{1}{\alpha}$ \\
 \end{itemize}
 \end{proof} 
-\textbf{I have two different eigenvalues for the same eigenvectors - one of the directions must be wrong. Anyone see the issue?}
 \end{problem}
 
 \begin{problem}{9.5}
@@ -138,13 +135,13 @@ such that $f(x^*) < f(x_{k+1})$. So we see that $Df(x_k)(x_{k+1}) = 0$, which pr
 Excellent. Now, $Df(x_k)(x_{k+1}) = 0$, so the gradient $Df^T(x_k)$ is tangent to the level set of $f$ at the point $x_{k+1}$. We know from our fact that $Df^T(x_{k+1})$ is orthogonal to the level set of $f$ at $x_{k+1}$, so it is orthogonal to $Df^T(x_k)$ as well, which concludes the proof. \\
 \\
 See Figure 1  for some geometric intuition. \\
-%\begin{figure} 
-%\centering
-%\includegraphics[width=.8\linewidth
-%]{SD.jpg}
-%\caption{A Nice Picture}
-%\label{fig:boat1}
-%\end{figure}
+\begin{figure} 
+\centering
+\includegraphics[width=.8\linewidth
+]{SD.jpg}
+\caption{A Nice Picture for Problem 9.5}
+\label{fig:boat1}
+\end{figure}
 \end{proof}
 \end{problem}
 
@@ -157,11 +154,11 @@ Jupyter
 \end{problem}
 
 \begin{problem}{9.8}
-Jupyter
+Jupyter (though incomplete - apologies)
 \end{problem}
 
 \begin{problem}{9.9}
-Jupyter
+Jupyter 
 \end{problem}
 
 \begin{problem}{9.10} 
@@ -238,7 +235,7 @@ x_1 = x_0 + \alpha_0 d_0 = x_0 - \alpha_0 Df^T(x_0) \\
 which shows the base case. \\
 \\
 \textit{Inductive Case:} Assume that 
-$$r_i^T r_k' = 0 \text{ for all } i < k'$$ is true for any $k' < k$. I will show that the statement is also true for $k$. There is a bit of preliminary work necessary for my argument. Define the sets $D_{k-1} = $ span$\{d_0,...,d_{k-1}\}$ and $R_{k-1} = $ span$\{r_0, ... r_{k-1}\}$. I'll state and justify a few facts about these sets. \\
+$$r_i^T r_{k'} = 0 \text{ for all } i < k'$$ is true for any $k' < k$. I will show that the statement is also true for $k$. There is a bit of preliminary work necessary for my argument. Define the sets $D_{k-1} = $ span$\{d_0,...,d_{k-1}\}$ and $R_{k-1} = $ span$\{r_0, ... r_{k-1}\}$. I'll state and justify a few facts about these sets. \\
 \\
 \textbf{Fact 1}: $D_{k-1}$ and $R_{k-1}$ are both bases for subspaces of dimension $k-1$.\\
 \textit{Justification}: $R_{k-1}$ and $D_{k-1}$ are both orthogonal over some inner product space on $R^{n}$: $R_{k-1}$ by the inductive assumption, and $D_{k-1}$ by the property that it is $Q$-conjugate (and so orthogonal over the inner product space $\langle \cdot, \cdot \rangle_Q$. It is a theorem somewhere that orthogonal vectors are linearly independent, which shows the fact. \\
